@@ -26,6 +26,8 @@
   --fl-tint-yellow-bg: #faf0ce;
   --fl-tint-red-bg: #fbdcd9;
   --fl-tint-purple-bg: #e7dffa;
+
+  --doc-reading-width: 800px;
 }
 
 .dark {
@@ -95,9 +97,26 @@ article main > div[class*="Card_grid"],
 article main > div[class*="Card_card"],
 article main > div[class*="nextra-code"],
 article main > a[class*="link"] {
-  max-width: 800px;
+  max-width: var(--doc-reading-width);
   margin-inline: auto;
   box-sizing: border-box;
+}
+
+/* Nextra의 breadcrumb, copy page, last-updated, pagination은 main 밖에
+ * 렌더링된다. 본문만 좁히면 이 페이지 크롬들이 좌우로 벌어져 보이므로
+ * 같은 reading column에 맞춘다. */
+article > .nextra-breadcrumb,
+article > div[class*="text-end"],
+article > div[class*="border-t"][class*="items-center"] {
+  max-width: var(--doc-reading-width);
+  margin-inline: auto;
+  box-sizing: border-box;
+}
+
+/* CopyPage는 Nextra 기본값이 float-end라 max-width가 직접 먹지 않는다.
+ * float는 유지하고 오른쪽 여백만 reading column의 gutter만큼 당긴다. */
+article > div[class*="float-end"] {
+  margin-inline-end: max(0px, calc((100% - var(--doc-reading-width)) / 2)) !important;
 }
 
 .dark article {

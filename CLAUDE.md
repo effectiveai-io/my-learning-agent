@@ -69,7 +69,7 @@ my-learning-agent/
 │       ├── mechanism.mdx        # 2. 핵심 메커니즘 라이브 구성
 │       ├── setup.mdx            # 3. 저장소 셋팅
 │       ├── outbox.mdx           # 4. outbox 설계 + 데이터 + 커맨드
-│       ├── newsletter.mdx       # 5. 오늘 한 줄 (매일 아침 도착하는 메타인지 메일)
+│       ├── awl.mdx              # 5. 송곳 한 줄 (매일 아침 도착하는 메타인지 메일)
 │       └── mission.mdx
 ├── public/
 │   ├── illustrations/           # japan-images에서 가져온 헤딩 일러스트 4종
@@ -306,7 +306,7 @@ npm run build      # Vercel 빌드와 동일 검증
 3. **인프런 챌린지 starter 저장소 분리** — 2회차에서 클론할 `my-learning-agent-starter` (inbox/ outbox/ + `.claude/commands/morning.md`) 별도 public 저장소
 4. **사이드바 'N' 아이콘** — Nextra footer 토글이 다크 모드에서 살짝 튐. globals.css 1줄로 정리 가능
 5. **홈 페이지 탭 제목** — "Index | 나의 학습 에이전트" → content/index.mdx 상단에 `# 나의 학습 에이전트` 또는 metadata export로 덮어쓰기
-6. **week2 라이브 직후 보강** — 실제 진행된 변형을 `knowledge.mdx` ~ `newsletter.mdx`에 반영
+6. **week2 라이브 직후 보강** — 실제 진행된 변형을 `knowledge.mdx` ~ `awl.mdx`에 반영
 7. **수강생 인용 카드 페이지** (선택) — 사전설문 장면 인용을 보조 화면용으로
 
 ## 컨벤션 요약 (한 줄)
