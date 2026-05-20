@@ -29,19 +29,32 @@ flowchart TD
     class Park park
 ```
 
-## 카드
+## 학습 단원 5개
 
 <CardGrid columns={2}>
-  <Card title="라이브 흐름 7단계" icon="🚦" href="/week2/flow" meta="시간순 진행안">
-    Hook부터 스케줄 v1까지 단계별 상세
+  <Card title="1. 지식을 잘 정리한다는건 뭘까?" icon="🪶" href="/week2/knowledge" meta="20분 · Hook + 통증 + 외부 모델">
+    내 PKM의 통증 1줄 → 카파시·김창준·PKM/PIM 짚고 본인 케이스 매칭
   </Card>
-  <Card title="outbox 메커니즘" icon="📤" href="/week2/substrate" meta="3번 보강 자료">
-    in → 처리 → outbox · 매일 도착하는 뉴스레터의 척추
+  <Card title="2. 핵심 메커니즘 라이브 구성" icon="📐" href="/week2/mechanism" meta="15분 · 메인 액티비티 ①">
+    in → 처리 → outbox 다이어그램을 본인 케이스로 같이 그린다
   </Card>
+  <Card title="3. 저장소 셋팅" icon="🗂️" href="/week2/setup" meta="10분 · 셋업">
+    초안 저장소 clone + .claude/commands/ 자동 로드
+  </Card>
+  <Card title="4. outbox 설계 + 데이터 + 커맨드" icon="📤" href="/week2/outbox" meta="25분 · 메인 액티비티 ②">
+    본인 데이터를 inbox/에 넣고 /morning 돌려서 outbox/ 만들기
+  </Card>
+</CardGrid>
+
+<Card title="5. 뉴스레터 스케줄 + 메타인지 지도" icon="📨" href="/week2/newsletter" meta="15분 · 매일 아침 도착하는 v1">
+GitHub Actions cron으로 outbox/ 자동 생성 + 본인에게 알림. 메타인지 지도는 다음 주 후보로 흘림
+</Card>
+
+<CardGrid columns={2}>
   <Card title="미션 · 5/26 마감" icon="🎯" href="/week2/mission" meta="개인 + 팀">
-    내 outbox 7일 굴리고 1줄 메타인지 5개 모으기
+    내 outbox 7일 굴리고 메타인지 1줄 5개 모으기
   </Card>
-  <Card title="3개 옵션 표 결과" icon="🗳️" meta="4 · 2 · 4 → 1+3 통합">
+  <Card title="3개 옵션 표 결과" icon="🗳️" disabled meta="4 · 2 · 4 → 1+3 통합">
     1번 앵커 + 3번 substrate · 2번은 다음 한 줄로 흘림
   </Card>
 </CardGrid>
