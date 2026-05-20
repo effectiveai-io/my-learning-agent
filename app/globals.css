@@ -291,6 +291,15 @@ article table {
   line-height: 1.5;
 }
 
+/* Fallback for any table that bypasses the MDX Table component.
+ * Nextra's stock table class intentionally uses negative inline margins for
+ * scroll affordance, but our reading column should keep the same outer edge as
+ * paragraphs, callouts, and headings. */
+article main > table {
+  margin-inline: auto !important;
+  box-sizing: border-box;
+}
+
 article th {
   font-weight: 600;
   text-align: left;

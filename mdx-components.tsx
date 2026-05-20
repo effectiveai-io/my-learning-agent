@@ -8,12 +8,14 @@ import { Timeline, TimelineItem } from './components/Timeline'
 import { Placeholder } from './components/Placeholder'
 import { Hero } from './components/Hero'
 import { Steps, Step } from './components/Steps'
+import { Table } from './components/Table'
 
 const docsComponents = getDocsMDXComponents()
 
 export function useMDXComponents(components?: Record<string, React.FC>) {
   return {
     ...docsComponents,
+    table: Table,
     Callout,
     Card,
     CardGrid,
