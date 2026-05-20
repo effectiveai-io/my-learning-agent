@@ -36,9 +36,6 @@ export function Reference({
           {meta && <div className={styles.meta}>{meta}</div>}
           <div className={styles.domain}>{domain}</div>
         </div>
-        <div className={styles.arrow} aria-hidden>
-          ↗
-        </div>
       </div>
     </a>
   )

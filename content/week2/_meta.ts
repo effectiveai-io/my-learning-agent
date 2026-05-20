@@ -6,4 +6,5 @@ export default {
   outbox: '4. outbox 설계 + 데이터 + 커맨드',
   newsletter: '5. 뉴스레터 스케줄 + 메타인지 지도',
   mission: '미션 · 5/26 마감',
+  appendix: 'Appendix',
 }

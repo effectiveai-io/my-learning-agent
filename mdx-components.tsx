@@ -10,12 +10,14 @@ import { Hero } from './components/Hero'
 import { Steps, Step } from './components/Steps'
 import { Table } from './components/Table'
 import { Reference } from './components/Reference'
+import { Anchor } from './components/Anchor'
 
 const docsComponents = getDocsMDXComponents()
 
 export function useMDXComponents(components?: Record<string, React.FC>) {
   return {
     ...docsComponents,
+    a: Anchor,
     table: Table,
     Callout,
     Card,

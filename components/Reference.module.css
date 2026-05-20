@@ -60,20 +60,6 @@
   white-space: nowrap;
 }
 
-.arrow {
-  flex-shrink: 0;
-  font-size: 0.9em;
-  color: rgba(55, 53, 47, 0.4);
-  margin-top: 2px;
-  opacity: 0;
-  transition: opacity 0.15s ease, transform 0.15s ease;
-}
-
-.link:hover .arrow {
-  opacity: 1;
-  transform: translate(2px, -2px);
-}
-
 /* Dark mode */
 :global(.dark) .card {
   background: rgba(255, 255, 255, 0.024);
@@ -95,8 +81,4 @@
 
 :global(.dark) .domain {
   color: rgba(255, 255, 255, 0.5);
-}
-
-:global(.dark) .arrow {
-  color: rgba(255, 255, 255, 0.4);
 }
