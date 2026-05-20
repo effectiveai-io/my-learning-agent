@@ -11,20 +11,20 @@
 ```mermaid
 flowchart LR
     subgraph In["📥 inbox/ · 원자료"]
-        D1[PR · 코드]
-        D2[노션 · 회고]
-        D3[메모 · 노트]
+        D1["PR · 코드"]
+        D2["노션 · 회고"]
+        D3["메모 · 노트"]
     end
 
     subgraph Proc["⚙️ 처리"]
-        P1[/morning 커맨드]
-        P2[/digest 커맨드]
+        P1["/morning 커맨드"]
+        P2["/digest 커맨드"]
     end
 
     subgraph Out["📤 outbox/ · 매일 산출"]
-        O1[메타인지 1줄]
-        O2[다음 한 줄 액션]
-        O3[근거 인용]
+        O1["메타인지 1줄"]
+        O2["다음 한 줄 액션"]
+        O3["근거 인용"]
     end
 
     D1 --> P1
