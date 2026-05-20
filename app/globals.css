@@ -236,31 +236,44 @@ article strong {
   font-weight: 600;
 }
 
-/* 블록인용구 - Folio 슬레이트 블루 좌측 바 + 연한 배경 */
+/* 블록인용구 - Folio 슬레이트 블루 좌측 바 + 연한 배경.
+ *
+ * !important 사용 이유: Nextra docs 테마가 Tailwind 클래스(.nx-*)로
+ * blockquote에 자체 padding/border를 적용하는데, 그 명세도(0,1,0)가
+ * 우리 type 셀렉터(0,0,2)를 이긴다. 프레임워크 기본값을 의도적으로
+ * 덮어쓰기 위해 !important 필요. */
 article blockquote {
-  border-left: 3px solid var(--fl-accent);
-  padding: 0.5em 1em;
-  margin: 0.75em 0;
+  border-left: 3px solid var(--fl-accent) !important;
+  padding: 0.5em 1em !important;
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
   color: inherit;
   font-style: normal;
   background: var(--fl-tint-blue-bg);
   border-radius: 0 6px 6px 0;
 }
 
-/* 인용 좌측 정렬 ("hanging accent" 패턴):
- * blockquote는 border-left(3px) + padding-left(1em)가 안의 텍스트를 19px 안쪽으로 민다.
- * 본문(800px) vs 인용 안 텍스트 사이의 시각적 어긋남이 생기는 원인.
+/* 인용 좌측 정렬 ("hanging accent" 패턴, 부모 폭 무관 버전):
  *
- * 해결: max-width를 본문보다 2×(border+padding) 만큼 더 넓힌다.
- * margin-inline: auto로 자동 가운데 정렬되면 양쪽으로 19px씩 bleed-out 되어
- * 좌측 bar가 본문 padding 영역에 자리잡고 안의 텍스트가 본문 텍스트와 정렬된다.
+ * 문제: blockquote의 border(3px) + padding-left(1em=16px) = 19px가 안의 텍스트를
+ *  본문 텍스트보다 19px 안쪽에서 시작하게 만든다.
  *
- * negative margin보다 안전한 패턴 — auto centering과 충돌하지 않고
- * 모든 부모 폭에서 안정적으로 작동한다.
+ * 해결: margin-left를 percentage-based로 계산해서 부모 폭과 무관하게
+ *  본문 좌측보다 정확히 19px LEFT에 blockquote 좌측을 배치한다.
  *
- * 본문 max-width 변경 시 이 값도 같이 맞춰야 함. */
+ *   margin-left = 부모중간(50%) - 본문절반(400px) - bleed(19px)
+ *                = 부모 폭이 어떻든 본문 좌측 - 19px
+ *
+ *  그러면 blockquote 안 텍스트 = 좌측 + border + padding-left = 본문 좌측 ✓
+ *
+ *  max-width를 본문(800) + bleed(19) = 819로 잡아 우측 edge도 본문과 정렬.
+ *
+ * !important: Nextra의 Tailwind blockquote 스타일을 덮어쓰기 위해.
+ * 본문 max-width(800)나 padding/border 변경 시 아래 calc도 같이 맞출 것. */
 article main > blockquote {
-  max-width: calc(800px + 2em + 6px);
+  margin-left: calc(50% - 400px - 1em - 3px) !important;
+  margin-right: auto !important;
+  max-width: calc(800px + 1em + 3px) !important;
 }
 
 article blockquote p {
