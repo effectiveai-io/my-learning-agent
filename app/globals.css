@@ -71,7 +71,13 @@ article {
   -moz-osx-font-smoothing: auto;
 }
 
-/* 본문 흐름 요소는 Notion 본문 너비(720px)로 제한 + 가운데 정렬.
+/* 본문 흐름 요소 max-width + 가운데 정렬.
+ *
+ * 800px = 16px 폰트 기준 한국어 약 50자/줄.
+ *   - 한국어 가독성 권장 30-50자 줄당 → 50자는 권장 상단(편안한 범위 유지)
+ *   - 영문 기준 80-90자 줄당 → 영문 권장 상단 내
+ *   - docs 페이지에서 article-TOC 사이 빈 공간을 줄여 시각 균형 회복
+ * Toss tech blog, Naver D2 등 한국 docs 사이트의 본문 폭과 같은 영역.
  *
  * ⚠️ max-width와 margin-inline: auto는 항상 짝.
  * margin-inline: auto가 빠지면 블록이 좁아진 채 부모 왼쪽에 달라붙어
@@ -88,7 +94,7 @@ article main > div[class*="placeholder"],
 article main > div[class*="Card_grid"],
 article main > div[class*="Card_card"],
 article main > a[class*="link"] {
-  max-width: 720px;
+  max-width: 800px;
   margin-inline: auto;
 }
 

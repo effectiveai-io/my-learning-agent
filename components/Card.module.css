@@ -183,24 +183,27 @@
 
 :global(.dark) .disabled {
   background: transparent;
+  border-color: rgba(255, 255, 255, 0.14);
 }
 
 :global(.dark) .disabled:hover {
   background: transparent;
-  border-color: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.14);
 }
 
-/* Dark mode */
+/* Dark mode
+ * background와 border 모두 한 단계 진하게: 검정 배경에서 카드 경계가 묻히지 않도록.
+ * 노션 다크 톤(아주 옅은 회색 카드)을 참고. */
 :global(.dark) .card {
-  background: rgba(255, 255, 255, 0.035);
-  border-color: rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.14);
 }
 
 :global(.dark) .link:hover .card,
 :global(.dark) .card:hover {
   /* 다크 모드도 같은 원칙: 강한 액센트 테두리 X, 같은 hue 안에서 짙어짐 */
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.22);
   box-shadow:
     0 2px 4px rgba(0, 0, 0, 0.2),
     0 6px 16px rgba(0, 0, 0, 0.25);
