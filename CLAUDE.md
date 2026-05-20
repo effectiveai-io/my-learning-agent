@@ -112,7 +112,17 @@ my-learning-agent/
 | `danger` | 빨강 | 금지·실패 시그널 |
 | `note` | 회색 | 보조 정보 |
 
-**한 줄 인용**은 `> "..."` 대신 `<Callout type="info">"..."</Callout>` 권장 (이중 박스 방지). Callout 안에 들어간 blockquote는 CSS로 inline 강조로 자동 변환되니, 두 패턴 모두 안전.
+**🚧 Callout 안에 blockquote(`> ...`) 절대 금지 — 이중 박스 발생**
+
+| 함정 | 잘못된 코드 | 올바른 코드 | 이유 |
+|---|---|---|---|
+| Callout 안에 `>` 인용 | `<Callout type="info">`<br />`> "한 줄 인용"`<br />`</Callout>` | `<Callout type="info">`<br />`"한 줄 인용"`<br />`</Callout>` | MDX는 JSX 태그 사이를 다시 markdown으로 파싱한다. `>`는 진짜 `<blockquote>` 엘리먼트가 되고 `article blockquote`의 파란 좌측 바·tint 배경(globals.css L247)이 적용돼 Callout 박스 안에 또 박스가 생긴다. 한 줄 인용은 Callout 자체가 강조 박스 역할을 하므로 `>` 불필요. |
+
+검출 한 줄 명령 — 결과가 0건이어야 한다:
+
+```bash
+for f in $(find content -name "*.mdx"); do perl -0777 -ne 'while (/<Callout[^>]*>(.*?)<\/Callout>/sg) { my $body = $1; if ($body =~ /^\s*>\s/m) { print "'"'"'$f'"'"': nested blockquote\n" } }' "$f"; done
+```
 
 ### Card / CardGrid
 
