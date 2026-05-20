@@ -38,41 +38,29 @@ clone이 끝나면 폴더 구조가 이렇게 보입니다.
 
 ```
 my-brain-v1/
-├── inbox/             # raw 자료 격리 — 정리 X, 그대로 던지는 곳
+├── inbox/                  # raw 자료 격리 — 정리 X, 그대로 던지는 곳
 │   └── README.md
-├── outbox/            # 사람용 영역 — 본인이 직접 쓰는 글 (append-only)
-│   └── 첫-outbox.md   # 복사해서 본인 첫 글로 바꾸는 템플릿
-├── ai-output/         # AI 산출물 격리 — 라인 단위로만 outbox로 옮김
+├── outbox/                 # 사람용 영역 — 본인이 직접 쓰는 글 (append-only)
+│   └── 첫-outbox.md        # 복사해서 본인 첫 글로 바꾸는 템플릿
+├── ai-wiki/                # LLM용 자동 복제본 — /돌아보기가 채움
+│   ├── README.md           # 폴더 의도 + LLM이 읽기 좋은 형식
+│   └── TEMPLATE.md         # frontmatter + 인용 단서 템플릿
+├── ai-output/              # AI 산출물 격리 — 라인 단위로만 outbox로 옮김
 │   └── README.md
-└── README.md          # 폴더 의미 + 작성 원칙
+├── .claude/
+│   ├── commands/
+│   │   ├── 돌아보기.md     # outbox → ai-wiki 복제 + 메타인지 1줄
+│   │   ├── reflect.md      # /돌아보기 영문 alias (동일 동작)
+│   │   ├── 주간정리.md     # 7일 누적 회고
+│   │   └── digest.md       # /주간정리 영문 alias
+│   └── settings.json       # 권한 · 기본 모델
+└── README.md
 ```
 
-여기서 **본인이 직접 쓰는 자리는 `outbox/` 한 곳**입니다. `inbox/`는 raw 자료를 던져두는 임시 자리, `ai-output/`은 AI가 만든 산출물 격리. 헷갈리면 [2번 메커니즘](/week2/mechanism#1-핵심-메커니즘--한-저장소에-두-영역)을 한 번 더 보세요.
+여기서 **본인이 직접 쓰는 자리는 `outbox/` 한 곳**입니다. `inbox/`는 raw 자료를 던져두는 임시 자리, `ai-output/`은 AI가 만든 산출물 격리, `ai-wiki/`는 손으로 안 만지고 커맨드가 채우는 LLM용 복제본. 헷갈리면 [2번 메커니즘](/week2/mechanism#1-핵심-메커니즘--한-저장소에-두-영역)을 한 번 더 보세요.
 
 <Callout type="tip">
 `outbox/`에 본인 PR·노션·미팅 기록이 들어간다면 `.gitignore`에 `outbox/`를 추가해 로컬에만 두는 걸 권장. 공개 push 여부는 본인 판단입니다.
-</Callout>
-
-### 라이브 직전 보강 2가지
-
-mechanism의 두 영역 골격을 살리려면 `ai-wiki/`와 `.claude/commands/` 두 가지가 더 필요합니다. 라이브에서 같이 깝니다.
-
-```diff
-my-brain-v1/
-  ├── inbox/
-  ├── outbox/
-+ ├── ai-wiki/                # LLM 친화 자동 복제본 — /reflect가 채움
-  ├── ai-output/
-+ ├── .claude/
-+ │   ├── commands/
-+ │   │   ├── reflect.md      # outbox → ai-wiki 동기화 + 메타인지 1줄
-+ │   │   └── digest.md       # 7일 누적 회고
-+ │   └── settings.json       # 권한 · 기본 모델
-  └── README.md
-```
-
-<Callout type="warning">
-라이브 전에 my-brain-v1을 미리 clone해뒀다면, 라이브 중에 `git pull`을 한 번 더 받아 위 두 가지 보강을 받아갑니다.
 </Callout>
 
 ## 2) 커맨드 둘러보기

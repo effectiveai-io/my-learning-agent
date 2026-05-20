@@ -231,6 +231,8 @@ classDef park fill:#f7f6f3,stroke:#9b9a97,stroke-dasharray:5
 
 `public/illustrations/`의 4종은 [irasutoya](https://www.irasutoya.com/) 카테고리에서 가져옴. 추가 시 같은 톤 유지를 위해 `~/git/youtube/japan-images/images/` 내에서 찾을 것.
 
+**후보 보관소** — `.inbox/illust-candidates/` (gitignored). 카드 일러스트 destination 파일명(`card-*.png`)과 동일하게 정리해두면 채택 시 `cp .inbox/illust-candidates/card-*.png public/illustrations/` 한 줄로 끝. 출처 매핑은 `.inbox/illust-candidates/source-names.md`. 96px 작은 카드에서는 단색 라인보다 4-6색 컬러 일러스트(이라스토야 톤)가 식별성 더 좋다는 게 확인됨.
+
 ## 참고 자료 위치 (저장소 외부)
 
 새 세션이라도 이 경로는 알아둬야 함:
