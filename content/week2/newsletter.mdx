@@ -1,0 +1,56 @@
+# 5. 뉴스레터 스케줄 + 메타인지 지도
+
+> outbox가 만들어졌으면, 이제 **매일 아침 나에게 도착**시킵니다. 단, 뉴스레터는 요약·정리가 아니라 — **10분 만에 시작할 수 있는 첫 문장**을 제안하는 형태로.
+
+<Callout type="warning">
+이 페이지는 **본문 채워야 함** — 스케줄 구성 방법과 메타인지 지도 v0 보강 예정. v1은 최소만, 풀스케일은 다음 주 후보로 빼둠.
+</Callout>
+
+## v1에 들어가는 것 (최소)
+
+1. **뉴스레터 1회 · 매일 아침 7시**
+2. **본문 3줄**: 메타인지 1줄 + 다음 한 줄 액션 + 근거 인용
+3. **첫 문장 제안**: 그 액션을 시작할 **첫 프롬프트 한 줄**
+
+## v1에서 빼는 것 (다음 주 후보)
+
+- 메타인지 지도 (전체 매핑 시각화)
+- 방향 검토 위젯
+- 뉴스레터 풀스케일 (요약·정리·분류 추가)
+
+<Callout type="warning">
+6번에 5가지를 한 번에 담으면 v1이 v0.3이 됩니다. **앞 3개만** 잡고, 나머지는 다음 주로 빼두세요.
+</Callout>
+
+## 스케줄 거는 법
+
+```bash
+# TODO: 라이브 직전 정리 — /schedule 사용 예시
+```
+
+## 메타인지 지도 (다음 주 미리보기)
+
+7일치 outbox가 쌓이면, "내가 뭘 알고 / 뭘 모르고 있는지"의 윤곽이 떠오릅니다. 이때 중요한 건 — **지도를 다 채우는 게 목적이 아니라**, 내가 어디쯤 있는지 보고 본인이 가고 싶은 방향을 정하는 것.
+
+```mermaid
+flowchart TD
+    Map["메타인지 지도 (7일 누적)"]
+    Known["알고 있는 영역"]
+    Unknown["모르고 있는 영역"]
+    Direction["내가 가고 싶은 방향"]
+    Newsletter["뉴스레터가 매일 1줄씩 짚어줌"]
+
+    Map --> Known
+    Map --> Unknown
+    Known --> Direction
+    Unknown --> Direction
+    Direction --> Newsletter
+    Newsletter -.피드백.-> Map
+
+    classDef now fill:#dee9fb,stroke:#3d6ff2,color:#1f47b3
+    classDef next fill:#f7f6f3,stroke:#9b9a97,stroke-dasharray:5,color:#6b6964
+    class Newsletter now
+    class Map,Known,Unknown,Direction next
+```
+
+→ 마무리: [미션 · 5/26 마감](/week2/mission)
