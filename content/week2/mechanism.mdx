@@ -2,86 +2,273 @@
 
 > 1번 페이지의 **본인 케이스 매칭 1줄**을 들고 옵니다. 나와 LLM이 함께 읽을 저장소가 어떤 모양인지 — `in → 처리 → outbox` 흐름을 한 장으로 그립니다.
 
-이 페이지는 라이브 3번 블록 · **15분**. 메인 액티비티 ①. 앞 페이지가 "왜 PKM인가"를 깔았다면, 이 페이지는 "PKM이 작동하는 메커니즘은 뭔가"로 한 단계 내려갑니다.
+이 페이지는 라이브 3번 블록 · **15분**. 메인 액티비티 ①.
 
-## 1) 김창준식 PKM — 저장소가 아니라 사이클
+옵션 3 ("LLM과 나, 둘 다를 위한 지식 저장소") 5표를 다시 읽어보면 — 단순한 "둘 다"가 아니라 **나·LLM·저장소 3자가 협업하는 관계, 그리고 그 중심이 '나'** 라는 의미입니다. 오늘 라이브의 핵심 목표는 단 하나: **"라이브 끝나고 내 outbox에 글 1개 쌓는다."** 이 페이지는 그 한 글이 왜 중요한지, 그리고 어떤 형식으로 써야 하는지를 짚습니다.
 
-**김창준이 강조하는 PKM의 핵심은 "저장"이 아니라 "사이클"이다.** 약한 신호에서 가설을 만들고, 작은 실험으로 검증하고, 회고하면서 다시 신호를 잡는 흐름. 방법론 이름(Zettelkasten · PARA · LLM wiki)을 외우는 것보다 **무엇이 작동하게 만드는 메커니즘**을 보는 게 더 중요하다는 게 그의 입장입니다.
+## 1) 3자 협업 관계 — 나·Outbox·LLM, 나가 중심
 
-<Callout type="note">
-출처: 김창준 『[함께 자라기](https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=171144250)』(인사이트, 2018), [애자일 이야기](https://agile.egloos.com/) 블로그 정리에서 풀어 씀. 다이어그램은 학습 사이클·약한 신호·귀추(abduction)·작은 실험 framing을 본 페이지 맥락에 맞게 압축한 것입니다.
-</Callout>
+내가 중심이 되어, 저장소와 LLM이 나를 돕는 협업 관계입니다. 저장소는 [김창준식 ACE 프레임워크](#ace) — Atlas(개념·주장) / Effort(현재 프로젝트) / Calendar(회고·액션) — 세 영역으로 분화시킵니다.
 
 ```mermaid
-flowchart LR
-    Sense["👁️ 약한 신호 채집<br/>불편함 · 놀람 · 반복 표현<br/>(원자료 그대로)"]
-    Abduce["💡 귀추 (abduction)<br/>'왜 이런 일이 일어났지?'<br/>가설 1개"]
-    Try["🎯 작은 실험<br/>일찍 · 핵심 · 적은 노력"]
-    Reflect["🔍 회고<br/>weak signal 갱신<br/>가설 수정"]
+flowchart TB
+    Me(["👤 나 (중심)<br/>약한 신호 감지<br/>의미 부여 · 의사결정"])
 
-    Sense --> Abduce --> Try --> Reflect --> Sense
-
-    classDef kc fill:#fafce0,stroke:#b59f3b,stroke-width:2px,color:#5b4a0e
-    class Sense,Abduce,Try,Reflect kc
-```
-
-라이브에서 짚을 포인트 3개:
-
-1. **출발점이 "정보"가 아니라 "weak signal"** — 회의 중 어색했던 1초, 코드리뷰에서 반복된 댓글 패턴, 또 똑같은 실수. 객관 자료가 아니라 본인 안에서 떠오른 작은 신호.
-2. **산출물이 "노트"가 아니라 "다음 행동의 변화"** — 평가 기준은 "정리됐는가"가 아니라 **"내가 1점 더 잘하게 됐나"**.
-3. **귀추(abduction)가 PKM의 진짜 엔진** — 작은 단서에서 그럴듯한 가설을 만드는 작업. 분류·태그·폴더가 아닙니다.
-
-<Callout type="info">
-이 사이클이 한 바퀴 돌면 본인이 작아도 1점 변화합니다. PKM 도구가 깔끔해도 사이클이 안 돌면 변화 없음. **사이클이 본질, 도구는 보조.**
-</Callout>
-
-## 2) 우리 시스템 v1 — abduction을 LLM에게 위임한다
-
-> **한 저장소를 사람과 LLM이 정반대 방향으로 읽는다.**
-
-```mermaid
-flowchart LR
-    subgraph Repo["📂 한 저장소 (Git)"]
-        IN["📥 inbox/<br/>PR · 노션 · 노트<br/>원자료 그대로"]
-        OUT["📤 outbox/<br/>2026-05-20.md<br/>1줄 + 근거 인용"]
+    subgraph Repo["📂 지식 저장소 = Outbox"]
+        direction LR
+        Atlas["🧭 Atlas<br/>개념 · 주장"]
+        Effort["🛠 Effort<br/>현재 프로젝트"]
+        Cal["📅 Calendar<br/>회고 · 액션"]
     end
 
-    LLM(("🤖 LLM<br/>/morning"))
-    ME(("👤 나"))
+    LLM(["🤖 LLM<br/>모순 찾기<br/>약한 신호 증폭"])
 
-    IN -- "raw 전체 읽음" --> LLM
-    LLM -- "1줄로 압축" --> OUT
-    OUT -- "1줄만 읽음<br/>(매일 아침)" --> ME
-    ME -- "이게 맞나? 1줄 피드백" --> IN
+    Me -- "① 단락 글쓰기<br/>(스토리 · 첫 줄 주장)" --> Repo
+    Repo -- "② 회상·인출<br/>(testing effect)" --> Me
+    Me -- "③ 명령<br/>(모순? 약한 신호?)" --> LLM
+    LLM -- "④ 후보 패턴 제시<br/>(라인 단위 채택)" --> Me
+    Repo -- "⑤ substrate<br/>(평문·시간순·링크)" --> LLM
 
-    classDef llmSide fill:#dee9fb,stroke:#3d6ff2,stroke-width:2px,color:#1f47b3
-    classDef humanSide fill:#fafce0,stroke:#b59f3b,stroke-width:2px,color:#5b4a0e
-    class LLM llmSide
-    class ME humanSide
+    classDef center fill:#fafce0,stroke:#b59f3b,stroke-width:3px,color:#5b4a0e
+    classDef llm fill:#dee9fb,stroke:#3d6ff2,stroke-width:2px,color:#1f47b3
+    class Me center
+    class LLM llm
+```
+
+라이브에서 짚을 포인트 5개 (화살표 라벨 그대로):
+
+1. **① 단락 글쓰기** — 팩트가 아닌 스토리, 첫 줄은 가장 강력한 주장 (definitional commitment).
+2. **② 회상·인출** — 내가 다시 읽고 떠올리는 그 순간이 학습. 이게 testing effect.
+3. **③ LLM에게 명령** — "모순 찾아줘", "약한 신호 뽑아줘" 두 가지 핵심 프롬프트.
+4. **④ LLM 응답은 라인 단위로** — 단락 통째로 흡수 X. 한 줄씩 본인 노트로 옮길지 결정.
+5. **⑤ LLM이 저장소를 직접 읽음** — 카파시식 substrate(평문·시간순·링크)라 가능. **이 한 화살표만 LLM이 저장소와 직거래**.
+
+<Callout type="info">
+**모든 의미부여는 '나'를 통과합니다.** 화살표 5개 중 4개가 "나"에서 출발하거나 "나"로 들어옵니다. LLM-저장소 직거래는 ⑤ 한 개. 즉 LLM은 보조 retriever이지, 작가가 아닙니다.
+</Callout>
+
+<details>
+<summary>🎨 ChatGPT 이미지 프롬프트 — 다이어그램 1</summary>
+
+```text
+한국어 인포그래픽 한 장. 사이즈: 가로 비율 4:3.
+
+제목 (상단 굵게): "나·LLM·저장소 — 3자 협업, 나가 중심"
+부제 (제목 아래): "내가 중심이 되어, 저장소와 LLM이 나를 돕는 협업 관계"
+
+레이아웃: 삼각형 배치
+- 상단 중앙: 👤 "나 (중심)" 원형 노드 — 따뜻한 노란색 배경(#fafce0), 굵은 황금 테두리(#b59f3b).
+  아래 설명: "약한 신호 감지 · 의미 부여 · 의사결정"
+- 좌측 하단: 📂 "Outbox (지식 저장소)" — 따뜻한 베이지 박스(#f7f6f3) 안에 세 칸 가로 배치:
+  · 🧭 Atlas (개념·주장)
+  · 🛠 Effort (현재 프로젝트)
+  · 📅 Calendar (회고·액션)
+- 우측 하단: 🤖 "LLM" 원형 노드 — 슬레이트 블루(#dee9fb), 진한 파랑 테두리(#3d6ff2).
+  아래 설명: "모순 찾기 · 약한 신호 증폭"
+
+화살표 5개, 각각 원 번호 라벨 ① ~ ⑤:
+① 나 → Outbox: "단락 글쓰기 (스토리·첫 줄 주장)"
+② Outbox → 나: "회상·인출 (testing effect)"
+③ 나 → LLM: "명령 (모순? 약한 신호?)"
+④ LLM → 나: "후보 패턴 제시 (라인 단위 채택)"
+⑤ Outbox → LLM (단방향): "substrate (평문·시간순·링크)"
+
+스타일:
+- 손그림 느낌이 살짝 섞인 깔끔한 인포그래픽 (참고: "문제 영역과 해결 영역을 나눠서 시각화하라" 톤)
+- 한글 sans-serif 폰트
+- 배경 흰색, 화살표는 굵고 화살촉 명확
+- 번호 라벨은 색 원 안에 흰 숫자
+
+하단 메시지 박스 (한 줄):
+"모든 의미부여는 '나'를 통과한다 — 화살표 5개 중 4개가 '나'에서 출발하거나 '나'로 들어온다"
+```
+
+</details>
+
+## 2) 왜 Outbox가 중심인가 — 학습은 input이 아닌 output에서 일어난다
+
+[안드레 카파시](https://karpathy.github.io/)식 LLM wiki, [PARA](https://fortelabs.com/blog/para/), [Zettelkasten](https://en.wikipedia.org/wiki/Zettelkasten) — 방법론 이름은 다 다르지만, 학습과학에서 **단 하나로 수렴**합니다.
+
+> **학습이 일어나는 곳은 input(읽기·저장)이 아니라 output(쓰기·인출)이다.**
+
+```mermaid
+flowchart LR
+    R["📚 Retrieval Practice<br/>Roediger & Karpicke (2006)<br/>인출이 학습을 만든다"]
+    G["✍️ Generation Effect<br/>Slamecka & Graf (1978)<br/>생성한 정보가 더 잘 남는다"]
+    A["📝 Writing as Thinking<br/>Ahrens (2017) · Graham (2022)<br/>글쓰기 = 사고의 매체"]
+    N["📖 Narrative Cognition<br/>Bruner · Klein<br/>서사로 저장되는 기억"]
+
+    Out["📤 Outbox<br/>(매일 1단락 + 첫 줄 주장)<br/>= 사고가 일어나는 자리"]
+
+    Think["🧠 내 사고가<br/>1점 더 깊어진다"]
+    Act["🎯 다음 행동이<br/>바뀐다"]
+
+    R --> Out
+    G --> Out
+    A --> Out
+    N --> Out
+    Out --> Think
+    Out --> Act
+
+    classDef src fill:#f7f6f3,stroke:#9b9a97,color:#3a3a37
+    classDef out fill:#fafce0,stroke:#b59f3b,stroke-width:3px,color:#5b4a0e
+    classDef result fill:#dee9fb,stroke:#3d6ff2,color:#1f47b3
+    class R,G,A,N src
+    class Out out
+    class Think,Act result
 ```
 
 라이브에서 짚을 포인트 3개:
 
-1. **저장소는 1개, 화살표는 2방향** — Git 저장소 1개 안에 `inbox/`와 `outbox/`가 같이 산다. 폴더 트리가 분리하는 게 아니라 **시간순 파일명**(`YYYY-MM-DD-*.md`)이 인덱스.
-2. **읽는 양의 비대칭** — LLM은 모든 raw, 사람은 1줄. 사람이 매일 1줄만 읽는다는 게 핵심. 인지 부담이 0에 가까워야 7일·30일을 굴립니다.
-3. **사이클이 닫힌다** — 사람의 피드백 1줄("이게 맞나?")이 다음날 LLM 입력. 매일 학습 가중치가 inbox에 쌓입니다.
-
-## 3) 두 다이어그램의 매핑
-
-우리 시스템은 김창준식 사이클의 **귀추 단계를 LLM이 가속**하는 구체 구현입니다. 사람의 일은 **신호 채집(앞)** 과 **실험·회고(뒤)** 에 남습니다.
-
-| 김창준식 사이클 | 우리 시스템 |
-|---|---|
-| 👁️ 약한 신호 채집 | `inbox/` (PR · 노션 · 노트 raw) |
-| 💡 귀추 (가설) | `/morning` 커맨드 (LLM이 abduction 가속) |
-| 🎯 작은 실험 | outbox 1줄 + 다음 한 줄 액션 |
-| 🔍 회고 → 갱신 | 사람 피드백 1줄을 다시 `inbox/` 로 |
+1. **Testing Effect (인출 효과)** — [Roediger & Karpicke (2006)](https://psychnet.wustl.edu/memory/wp-content/uploads/2018/04/Karpicke-Roediger-2008_Sci.pdf)의 핵심 발견. 시험(인출)이 단순 재학습보다 장기 기억을 **1.5~2배** 강화. inbox에 100개 저장보다, outbox에 1줄 쓰는 게 학습 효과 큼.
+2. **Generation Effect (생성 효과)** — [Slamecka & Graf (1978)](https://doi.org/10.1037/0278-7393.4.6.592). 직접 만든 정보가 받아 적은 정보보다 기억에 더 잘 남음. **LLM이 만들어준 요약을 그대로 붙이면 학습이 안 일어난다** (김창준 패치 노트 6.3과 정확히 일치).
+3. **팩트가 아니라 스토리** — Bruner의 narrative cognition. "오늘 회의 있었다"가 아니라 "오늘 회의에서 OO가 한 말이 내 가정을 흔들었다 — 왜냐하면…". 결정의 순간·판단이 바뀐 순간·불편했던 대화를 1단락 서사로.
 
 <Callout type="tip">
-**왜 LLM에게 귀추를 맡기나** — 사람은 본인 패턴을 자기가 못 봅니다. 코드리뷰 100건에서 반복되는 약점, 회고 30개에서 떨어지는 같은 단어. 본인은 매일 한 건씩 봐서 안 보이는데, LLM은 한 번에 다 봅니다. **사람이 못 보는 패턴을 LLM이 1줄로 박는다** — 이게 abduction 가속의 의미.
+**Inbox 중심으로 생각하면 PIM에 빠진다** — 자료 수집·태그·폴더에 3개월. PKM은 **내가 쓴 1줄(outbox)이 본질**, inbox는 그 1줄을 위한 재료일 뿐. 오늘의 목표: "라이브 끝나고 내 outbox에 글 1개 쌓는다."
 </Callout>
 
-## 4) 본인 커스텀 포인트 — 라이브 15분
+<details>
+<summary>🎨 ChatGPT 이미지 프롬프트 — 다이어그램 2</summary>
+
+```text
+한국어 인포그래픽 한 장. 사이즈: 가로 4:3.
+
+제목 (상단 굵게): "왜 Outbox가 중심인가"
+부제: "학습은 input(읽기·저장)이 아니라 output(쓰기·인출)에서 일어난다"
+
+레이아웃: 중앙 큰 원 + 좌측 4개 학술 근거 박스 + 우측 2개 결과 박스
+
+좌측 4개 박스 (위에서 아래로), 각 박스 안에 아이콘·효과명·학자·핵심 한 줄:
+1. 📚 Retrieval Practice
+   Roediger & Karpicke (2006)
+   "인출이 학습을 만든다"
+2. ✍️ Generation Effect
+   Slamecka & Graf (1978)
+   "생성한 정보가 더 잘 남는다"
+3. 📝 Writing as Thinking
+   Ahrens (2017) · Graham (2022)
+   "글쓰기 = 사고의 매체"
+4. 📖 Narrative Cognition
+   Bruner · Klein
+   "서사로 저장되는 기억"
+
+→ 4개 박스에서 화살표가 모두 중앙으로 모여듦
+
+중앙: 📤 큰 원/박스, 따뜻한 노란색(#fafce0) 강조, 굵은 황금 테두리(#b59f3b)
+  "Outbox"
+  "매일 1단락 + 첫 줄 주장"
+  "= 사고가 일어나는 자리"
+
+→ 중앙에서 우측으로 화살표 2개:
+- 🧠 "내 사고가 1점 더 깊어진다" (슬레이트 블루 톤)
+- 🎯 "다음 행동이 바뀐다" (슬레이트 블루 톤)
+
+스타일:
+- 학술 포스터 + 인포그래픽의 중간 톤
+- 좌측 학술 박스는 회색~베이지 톤(#f7f6f3), 학자 이름은 작게 영문, 효과명은 굵게
+- 중앙 Outbox는 가장 시각적으로 무거움
+- 우측 결과는 액션 색(슬레이트 블루)
+- 흰 배경, 화살촉 명확
+
+하단 메시지 박스 (한 줄, 굵게):
+"inbox에 100개 저장보다, outbox에 1줄 쓰는 게 학습 효과 크다"
+```
+
+</details>
+
+## 3) Outbox 한 글의 형식 — 나에게 좋은 것이 LLM에게도 좋다
+
+> **같은 outbox 위에서 두 가지 retrieval이 일어난다** — 사람의 인출(testing effect) + LLM의 인출(하이브리드 서치). 한 형식으로 둘 다 만족시키는 게 옵션 3의 진짜 약속입니다. (출처: 김창준 패치 노트 6.4 *"두 가지 의미의 Retriever"*)
+
+```mermaid
+flowchart TB
+    subgraph Form["📤 Outbox 한 글의 형식 (6원칙)"]
+        direction LR
+        F1["🧭<br/>첫 줄 =<br/>강력한 주장"]
+        F2["📝<br/>한 단락<br/>한 아이디어"]
+        F3["🔗<br/>위키 · 상대경로<br/>링크 (순환 OK)"]
+        F4["📅<br/>YYYY-MM-DD<br/>prefix"]
+        F5["📂<br/>평면 배치<br/>(no folder)"]
+        F6["📖<br/>팩트 아닌<br/>스토리"]
+    end
+
+    Me["👤 나에게 좋음<br/>(김창준식 PKM)<br/>retrieval cue · 분화 · 창발"]
+    LLM["🤖 LLM에게도 좋음<br/>(카파시 LLM wiki)<br/>context · 하이브리드 서치"]
+
+    Form --> Me
+    Form --> LLM
+
+    classDef form fill:#fafce0,stroke:#b59f3b,stroke-width:2px,color:#5b4a0e
+    classDef human fill:#fafce0,stroke:#b59f3b,stroke-width:3px,color:#5b4a0e
+    classDef llm fill:#dee9fb,stroke:#3d6ff2,stroke-width:3px,color:#1f47b3
+    class F1,F2,F3,F4,F5,F6 form
+    class Me human
+    class LLM llm
+```
+
+6원칙 대응표 — **같은 원칙이 양쪽 다 만족**:
+
+| 형식 원칙 | 나에게 좋은 이유 (김창준식) | LLM에게도 좋은 이유 (카파시식) |
+|---|---|---|
+| 🧭 첫 줄 = 강력한 주장 | definitional commitment (Feynman) | LLM 컨텍스트 헤더 · 검색 결과 첫 줄 적중 |
+| 📝 한 단락 한 아이디어 | atomic note (Luhmann) | RAG 청킹 친화 |
+| 🔗 위키·상대경로 링크 | graph 구조, 순환 = 통찰 경로 | LLM이 따라갈 수 있는 평문 링크 |
+| 📅 `YYYY-MM-DD` prefix | 시간순 = 서사 (Bruner) | LLM의 시간 인덱스 |
+| 📂 평면 배치 | 해피 액시던트 (Unlinked Mentions) | 폴더 깊이 = 노이즈 |
+| 📖 팩트 아닌 스토리 | narrative cognition | 맥락이 풍부한 청크 |
+
+<Callout type="info">
+**내 outbox가 곧 LLM 컨텍스트의 substrate** — 사람용 형식과 LLM용 형식이 충돌하지 않습니다. 같은 자리에서 만납니다. 이게 옵션 3 5표의 진짜 의미.
+</Callout>
+
+<details>
+<summary>🎨 ChatGPT 이미지 프롬프트 — 다이어그램 3</summary>
+
+```text
+한국어 인포그래픽 한 장. 사이즈: 가로 4:3.
+
+제목 (상단 굵게): "Outbox 한 글의 형식 — 나에게 좋은 것이 LLM에게도 좋다"
+부제: "같은 outbox 위에서 두 가지 retrieval이 일어난다 (사람의 인출 + LLM의 인출)"
+
+레이아웃: 좌우 대칭. 중앙에 6원칙 그리드, 좌·우로 사용자 박스.
+
+중앙 (가장 큰 영역, 베이지 박스 #f7f6f3 안에 6칸 그리드 3×2):
+"📤 Outbox 한 글의 형식 (6원칙)"
+각 칸:
+1. 🧭 첫 줄 = 강력한 주장
+2. 📝 한 단락 한 아이디어
+3. 🔗 위키·상대경로 링크 (순환 OK)
+4. 📅 YYYY-MM-DD prefix
+5. 📂 평면 배치 (no folder)
+6. 📖 팩트 아닌 스토리
+
+좌측 박스 (따뜻한 노란색 #fafce0, 굵은 황금 테두리 #b59f3b):
+👤 "나에게 좋음"
+부제: "김창준식 PKM"
+세부: "retrieval cue · 분화 · 창발"
+
+우측 박스 (슬레이트 블루 #dee9fb, 굵은 파랑 테두리 #3d6ff2):
+🤖 "LLM에게도 좋음"
+부제: "카파시 LLM wiki"
+세부: "context window · 하이브리드 서치 · RAG"
+
+화살표: 중앙 6원칙에서 좌측·우측으로 동시에 굵은 화살표가 나감.
+→ "같은 형식이 둘 다 만족"이 시각적으로 즉시 보임.
+
+스타일:
+- 좌우 대칭, 가운데 6원칙이 무게중심
+- 각 원칙 칸 안에 작은 아이콘 + 굵은 한글 두 줄
+- 한글 sans-serif, 깔끔한 인포그래픽
+- 배경 흰색
+
+하단 메시지 박스 (한 줄, 굵게):
+"내 outbox가 곧 LLM 컨텍스트의 substrate가 된다"
+```
+
+</details>
+
+## 4) 본인 커스텀 포인트 — 라이브 15분 {#ace}
 
 본인 자가진단(1번 페이지)과 막힌 장면에 따라, 라이브에서 같이 손봅니다.
 
@@ -91,11 +278,19 @@ flowchart LR
 | 데이터 소스 | PR · 노션 · 노트 | __________ |
 | 1줄 형태 | 메타인지 1줄 + 액션 1줄 | __________ |
 | 누적 주기 | 7일 회고 | __________ |
+| ACE 영역 비중 | Atlas · Effort · Calendar 1:1:1 | __________ |
 
 채워 넣을 1줄 예시:
 
 <Callout type="info">
 *"나는 outbox 시각을 **22시(잠들기 전)** 로 바꾼다. 왜냐하면 아침엔 메시지 다 놓치고, 자기 전에 다음날 1순위만 보고 싶기 때문이다."*
+</Callout>
+
+오늘의 핵심 목표 한 번 더:
+
+<Callout type="tip">
+🎯 **"오늘 라이브 끝나고 내 outbox에 글 1개 쌓는다."**
+6원칙대로 쓴 1단락이면 충분. 그 1글이 내일 아침 `/morning` 의 첫 입력이 됩니다.
 </Callout>
 
 → 다음: [3. 저장소 셋팅](/week2/setup)
