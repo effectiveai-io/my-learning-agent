@@ -116,9 +116,11 @@
   }
 }
 
-/* Disabled state — 예정 회차 등 비활성 카드 */
+/* Disabled state — 예정 회차 등 비활성 카드
+ * 시각적 de-emphasis는 dashed border + transparent 배경으로 충분.
+ * opacity는 너무 낮추면 본문 가독성이 망가지므로 보존적으로. */
 .disabled {
-  opacity: 0.65;
+  opacity: 0.88;
   cursor: default;
   border-style: dashed;
   background: transparent;
