@@ -11,6 +11,7 @@ import { Steps, Step } from './components/Steps'
 import { Table } from './components/Table'
 import { Reference } from './components/Reference'
 import { Anchor } from './components/Anchor'
+import { CodeBlock } from './components/CodeBlock'
 
 const docsComponents = getDocsMDXComponents()
 
@@ -18,6 +19,7 @@ export function useMDXComponents(components?: Record<string, React.FC>) {
   return {
     ...docsComponents,
     a: Anchor,
+    pre: CodeBlock,
     table: Table,
     Callout,
     Card,

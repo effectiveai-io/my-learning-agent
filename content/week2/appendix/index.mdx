@@ -60,10 +60,10 @@ LLM이 관련 페이지를 검색해서 인용 포함 답변을 종합합니다.
 
 | LLM Wiki 레이어 | 우리 메커니즘 |
 |---|---|
-| 원본 소스 (raw) | `inbox/` — 본인 PR, 노션 페이지, 노트 |
+| 원본 소스 (raw) | `.inbox/` — 본인 PR, 노션 페이지, 노트 |
 | 위키 | `outbox/` — 매일 아침 도착하는 메타인지 한 줄 + 누적되는 학습 페이지 |
-| 스키마 | `.claude/commands/reflect.md` + `CLAUDE.md` — 어떤 흐름으로 LLM이 작업할지 정의 |
-| Ingest | `/reflect` 커맨드 실행 |
+| 스키마 | `.claude/commands/돌아보기.md` + `CLAUDE.md` — 어떤 흐름으로 LLM이 작업할지 정의 |
+| Ingest | `/돌아보기` 커맨드 실행 |
 | Query | "오늘 나는 뭘 모르고 있나?" 1줄 질문 |
 | Lint | 다음 주 후보 — outbox/ 모순·고립 페이지 점검 |
 
