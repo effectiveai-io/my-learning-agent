@@ -6,45 +6,39 @@
 
 옵션 3 ("LLM과 나, 둘 다를 위한 지식 저장소") 5표를 다시 읽어보면 — 단순한 "둘 다"가 아니라 **나·LLM·저장소 3자가 협업하는 관계, 그리고 그 중심이 '나'** 라는 의미입니다. 오늘 라이브의 핵심 목표는 단 하나: **"라이브 끝나고 내 outbox에 글 1개 쌓는다."** 이 페이지는 그 한 글이 왜 중요한지, 그리고 어떤 형식으로 써야 하는지를 짚습니다.
 
-## 1) 3자 협업 관계 — 나·Outbox·LLM, 나가 중심
+## 1) 3자 협업 — 같은 outbox에서 만난다
 
-내가 중심이 되어, 저장소와 LLM이 나를 돕는 협업 관계입니다. 저장소는 **김창준식 ACE 프레임워크** — Atlas(개념·주장) / Effort(현재 프로젝트) / Calendar(회고·액션) — 세 영역으로 분화시킵니다.
+핵심 메커니즘은 두 가지뿐입니다.
+
+- **나의 PKM**: 내가 outbox 중심으로 쓴다 → 학습이 일어남 (testing / generation effect)
+- **LLM wiki**: 시간순 `.md` 파일 → LLM이 읽기 쉬운 substrate (카파시)
+
+이 둘이 **같은 outbox 위에서 만나는** 것이 옵션 3의 전부. 그 외 폴더 구조·태그·분류는 다 본인 취향의 부가물.
 
 ```mermaid
 flowchart TB
-    Me(["👤 나 (중심)<br/>약한 신호 감지<br/>의미 부여 · 의사결정"])
+    Me(["👤 나"])
+    LLM(["🤖 LLM"])
+    Box["📤 Outbox<br/>YYYY-MM-DD-주제.md<br/>(시간순 평문)"]
 
-    subgraph Repo["📂 지식 저장소 = Outbox"]
-        direction LR
-        Atlas["🧭 Atlas<br/>개념 · 주장"]
-        Effort["🛠 Effort<br/>현재 프로젝트"]
-        Cal["📅 Calendar<br/>회고 · 액션"]
-    end
+    Me -- "쓴다<br/>(= 학습 · testing effect)" --> Box
+    Box -- "읽는다<br/>(= substrate · 시간순)" --> LLM
 
-    LLM(["🤖 LLM<br/>모순 찾기<br/>약한 신호 증폭"])
-
-    Me -- "① 단락 글쓰기<br/>(스토리 · 첫 줄 주장)" --> Repo
-    Repo -- "② 회상·인출<br/>(testing effect)" --> Me
-    Me -- "③ 명령<br/>(모순? 약한 신호?)" --> LLM
-    LLM -- "④ 후보 패턴 제시<br/>(라인 단위 채택)" --> Me
-    Repo -- "⑤ substrate<br/>(평문·시간순·링크)" --> LLM
-
-    classDef center fill:#fafce0,stroke:#b59f3b,stroke-width:3px,color:#5b4a0e
+    classDef me fill:#fafce0,stroke:#b59f3b,stroke-width:3px,color:#5b4a0e
+    classDef box fill:#fafce0,stroke:#b59f3b,stroke-width:3px,color:#5b4a0e
     classDef llm fill:#dee9fb,stroke:#3d6ff2,stroke-width:2px,color:#1f47b3
-    class Me center
+    class Me me
+    class Box box
     class LLM llm
 ```
 
-라이브에서 짚을 포인트 5개 (화살표 라벨 그대로):
+라이브에서 짚을 포인트 2개:
 
-1. **① 단락 글쓰기** — 팩트가 아닌 스토리, 첫 줄은 가장 강력한 주장 (definitional commitment).
-2. **② 회상·인출** — 내가 다시 읽고 떠올리는 그 순간이 학습. 이게 testing effect.
-3. **③ LLM에게 명령** — "모순 찾아줘", "약한 신호 뽑아줘" 두 가지 핵심 프롬프트.
-4. **④ LLM 응답은 라인 단위로** — 단락 통째로 흡수 X. 한 줄씩 본인 노트로 옮길지 결정.
-5. **⑤ LLM이 저장소를 직접 읽음** — 카파시식 substrate(평문·시간순·링크)라 가능. **이 한 화살표만 LLM이 저장소와 직거래**.
+1. **나 → Outbox: 쓰는 행위 자체가 학습** — 받아 적는 게 아니라 직접 생성하는 게 학습. 이게 다음 섹션의 학술 근거.
+2. **Outbox → LLM: 시간순 평문이 곧 substrate** — 카파시식 LLM wiki. 폴더 트리·분류 체계가 아니라 `YYYY-MM-DD-주제.md` 가 인덱스.
 
 <Callout type="info">
-**모든 의미부여는 '나'를 통과합니다.** 화살표 5개 중 4개가 "나"에서 출발하거나 "나"로 들어옵니다. LLM-저장소 직거래는 ⑤ 한 개. 즉 LLM은 보조 retriever이지, 작가가 아닙니다.
+**LLM은 outbox를 쓰지 않습니다.** 화살표는 LLM에서 outbox로 가지 않아요. LLM 응답은 나를 거쳐 라인 단위로만 채택. 그래야 generation effect가 망가지지 않습니다 (김창준 패치 노트 6.3).
 </Callout>
 
 <details>
@@ -53,34 +47,31 @@ flowchart TB
 ```text
 한국어 인포그래픽 한 장. 사이즈: 가로 비율 4:3.
 
-제목 (상단 굵게): "나·LLM·저장소 — 3자 협업, 나가 중심"
-부제 (제목 아래): "내가 중심이 되어, 저장소와 LLM이 나를 돕는 협업 관계"
+제목 (상단 굵게): "3자 협업 — 같은 outbox에서 만난다"
+부제: "PKM(쓰기=학습) + LLM wiki(시간순=substrate)가 한 outbox 위에서 만나는 가장 간결한 메커니즘"
 
-레이아웃: 삼각형 배치
-- 상단 중앙: 👤 "나 (중심)" 원형 노드 — 따뜻한 노란색 배경(#fafce0), 굵은 황금 테두리(#b59f3b).
-  아래 설명: "약한 신호 감지 · 의미 부여 · 의사결정"
-- 좌측 하단: 📂 "Outbox (지식 저장소)" — 따뜻한 베이지 박스(#f7f6f3) 안에 세 칸 가로 배치:
-  · 🧭 Atlas (개념·주장)
-  · 🛠 Effort (현재 프로젝트)
-  · 📅 Calendar (회고·액션)
-- 우측 하단: 🤖 "LLM" 원형 노드 — 슬레이트 블루(#dee9fb), 진한 파랑 테두리(#3d6ff2).
-  아래 설명: "모순 찾기 · 약한 신호 증폭"
+레이아웃: 세로 3단 (상-중-하).
+- 상단: 👤 "나" 원형 노드 — 따뜻한 노란색 배경(#fafce0), 굵은 황금 테두리(#b59f3b).
+- 중앙: 📤 "Outbox" 큰 박스 — 따뜻한 노란색(#fafce0), 굵은 황금 테두리.
+  박스 안 두 줄:
+  · "YYYY-MM-DD-주제.md"
+  · "(시간순 평문)"
+- 하단: 🤖 "LLM" 원형 노드 — 슬레이트 블루(#dee9fb), 진한 파랑 테두리(#3d6ff2).
 
-화살표 5개, 각각 원 번호 라벨 ① ~ ⑤:
-① 나 → Outbox: "단락 글쓰기 (스토리·첫 줄 주장)"
-② Outbox → 나: "회상·인출 (testing effect)"
-③ 나 → LLM: "명령 (모순? 약한 신호?)"
-④ LLM → 나: "후보 패턴 제시 (라인 단위 채택)"
-⑤ Outbox → LLM (단방향): "substrate (평문·시간순·링크)"
+화살표 2개 (위→중, 중→하):
+- 나 → Outbox: "쓴다 (= 학습 · testing effect)"
+- Outbox → LLM: "읽는다 (= substrate · 시간순)"
+
+※ LLM에서 Outbox로 가는 화살표 없음. LLM은 읽기만. 이 점이 시각적으로도 분명히 보이게.
 
 스타일:
 - 손그림 느낌이 살짝 섞인 깔끔한 인포그래픽 (참고: "문제 영역과 해결 영역을 나눠서 시각화하라" 톤)
 - 한글 sans-serif 폰트
 - 배경 흰색, 화살표는 굵고 화살촉 명확
-- 번호 라벨은 색 원 안에 흰 숫자
+- 화살표 라벨은 화살표 옆에 작은 박스로
 
-하단 메시지 박스 (한 줄):
-"모든 의미부여는 '나'를 통과한다 — 화살표 5개 중 4개가 '나'에서 출발하거나 '나'로 들어온다"
+하단 메시지 박스 (한 줄, 굵게):
+"핵심 메커니즘은 두 화살표뿐이다 — 나는 쓰고, LLM은 읽는다"
 ```
 
 </details>
@@ -278,7 +269,7 @@ flowchart TB
 | 데이터 소스 | PR · 노션 · 노트 | __________ |
 | 1줄 형태 | 메타인지 1줄 + 액션 1줄 | __________ |
 | 누적 주기 | 7일 회고 | __________ |
-| ACE 영역 비중 | Atlas · Effort · Calendar 1:1:1 | __________ |
+| 폴더 구조 (옵션) | `outbox/` 단일 평면 | ACE? PARA? 다른 식? |
 
 채워 넣을 1줄 예시:
 
