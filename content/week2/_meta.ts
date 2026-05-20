@@ -5,6 +5,6 @@ export default {
   setup: '3. 저장소 셋팅',
   outbox: '4. outbox 설계 + 데이터 + 커맨드',
   awl: '5. 송곳 한 줄',
-  mission: '미션 · 5/26 마감',
+  mission: '🚀 미션 · 5/26 마감',
   appendix: 'Appendix',
 }
