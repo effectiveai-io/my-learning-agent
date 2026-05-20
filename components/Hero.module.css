@@ -22,25 +22,25 @@
 .subtitle {
   font-size: 1.125rem;
   font-weight: 500;
-  color: rgba(55, 53, 47, 0.5);
+  color: rgba(55, 53, 47, 0.72);
   margin: 0 0 1rem;
   letter-spacing: -0.01em;
 }
 
 :global(.dark) .subtitle {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.65);
 }
 
 .description {
   font-size: 1rem;
   line-height: 1.7;
-  color: rgba(55, 53, 47, 0.45);
+  color: rgba(55, 53, 47, 0.7);
   max-width: 32rem;
   margin: 0 auto;
 }
 
 :global(.dark) .description {
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.62);
 }
 
 .description p {
