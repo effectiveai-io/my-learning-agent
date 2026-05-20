@@ -1,6 +1,7 @@
 import { Footer, Layout, Navbar, ThemeSwitch } from 'nextra-theme-docs'
 import { Head } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
+import SlideMode from '../components/SlideMode'
 import 'nextra-theme-docs/style.css'
 import './globals.css'
 
@@ -73,6 +74,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         >
           {children}
         </Layout>
+        <SlideMode />
       </body>
     </html>
   )
