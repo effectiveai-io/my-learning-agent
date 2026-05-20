@@ -1,0 +1,38 @@
+# 3. 저장소 셋팅
+
+> 미리 만든 초안 저장소를 clone하고, 함께 동작할 스킬 세트를 깝니다. **셋업은 10분 안에 끝내고 5번 단계로 넘어가는 게 목적**입니다.
+
+<Callout type="warning">
+이 페이지는 **본문 채워야 함** — 초안 저장소 GitHub URL과 스킬 설치 명령어 보강 예정.
+</Callout>
+
+## 클론
+
+```bash
+git clone https://github.com/__USER__/__REPO__.git my-learning-agent
+cd my-learning-agent
+```
+
+## 저장소 구조
+
+```
+my-learning-agent/
+├── inbox/              # 원자료 그대로 던지는 곳
+├── outbox/             # 매일 아침 산출
+├── processed/          # 처리 후 이동 (선택)
+├── .claude/
+│   ├── commands/
+│   │   ├── morning.md
+│   │   └── digest.md
+│   └── settings.json
+└── README.md
+```
+
+## 스킬 세트 설치
+
+```bash
+# TODO: 라이브 직전 정리
+claude skill install ...
+```
+
+→ 다음: [4. outbox 설계 + 데이터 + 커맨드](/week2/outbox)

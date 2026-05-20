@@ -17,11 +17,11 @@ export default {
     type: 'page',
   },
   week1: {
-    title: '1회차 · 5/13',
+    title: '1회차',
     type: 'page',
   },
   week2: {
-    title: '2회차 · 5/20',
+    title: '2회차',
     type: 'page',
   },
   examples: {
