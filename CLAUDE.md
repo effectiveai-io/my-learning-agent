@@ -141,6 +141,7 @@ my-learning-agent/
 |---|---|---|---|
 | 컨텐츠가 좌측으로 쏠려 보임 | `max-width: 720px;` (단독) | `max-width: 720px; margin-inline: auto;` (짝) | `max-width`만 주면 블록이 좁아질 뿐 위치는 안 바뀜 — 부모 왼쪽에 달라붙음. Hero(text-align: center, 풀폭) 아래 컨텐츠가 좌측 쏠리는 시각 비대칭의 원인. |
 | Hero 폭과 본문 폭이 다름 | Hero 풀폭 + 본문 720px **좌측 정렬** | Hero 풀폭(text-align: center) + 본문 720px **+ margin-inline: auto** | 두 요소의 가운데 축이 같아야 페이지가 단단하게 느껴진다. |
+| 인용(blockquote) 안 텍스트가 본문 텍스트보다 안쪽에 시작 | blockquote가 본문과 동일한 max-width | blockquote max-width = 본문 + `2×(border-left + padding-left)` | border + padding이 텍스트를 안쪽으로 미는 만큼 box를 양쪽으로 더 넓혀 가운데 정렬되게 하면, 좌측 bar가 본문 padding 영역으로 "bleed-out"되어 안 텍스트가 본문과 정렬됨 (편집 디자인의 "hanging accent" 패턴). **본문 max-width 변경 시 이 값도 같이 맞춰야 함** — 현재: 본문 800 / 인용 `calc(800px + 2em + 6px)` = 838. |
 
 ### Steps / Timeline
 
