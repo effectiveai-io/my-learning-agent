@@ -1,20 +1,27 @@
 /* Notion-style Callout */
 .callout {
   display: flex;
-  gap: 0.5rem;
-  padding: 1rem 1rem;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 1rem 1.1rem;
   border-radius: 3px;
   margin: 0.5em 0;
-  line-height: 1.55;
-  font-size: 0.9375rem;
+  line-height: 1.6;
+  font-size: 1rem;
+  color: rgb(55, 53, 47);
+}
+
+:global(.dark) .callout {
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .emoji {
-  font-size: 1.25em;
+  font-size: 1.15em;
   flex-shrink: 0;
-  line-height: 1.5;
+  /* 본문과 같은 line-height로 맞춰 첫 줄 baseline 어긋남을 줄인다. */
+  line-height: 1.6;
   user-select: none;
-  width: 24px;
+  width: 1.5em;
   text-align: center;
 }
 

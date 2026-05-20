@@ -60,7 +60,7 @@ article {
 }
 
 /* 본문 흐름 요소는 Notion 본문 너비(720px)로 제한.
- * CardGrid(Card_grid__*)와 Hero(Hero_hero__*)는 제외해서 풀폭 사용.
+ * Hero(Hero_hero__*)는 제외해서 풀폭 사용.
  * Nextra 4 구조: article > main > * */
 article main > :where(p, h1, h2, h3, h4, h5, h6, ul, ol, blockquote, table, pre, hr),
 article main > div[class*="callout"],
@@ -68,6 +68,8 @@ article main > div[class*="steps"],
 article main > div[class*="timeline"],
 article main > div[class*="toggle"],
 article main > div[class*="placeholder"],
+article main > div[class*="Card_grid"],
+article main > div[class*="Card_card"],
 article main > a[class*="link"] {
   max-width: 720px;
 }
