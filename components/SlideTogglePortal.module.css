@@ -1,29 +1,20 @@
-.wrap {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem;
-  margin: 0.25rem 0 1.5rem;
-  padding: 10px 14px;
-  background: #f7f6f3;
-  border: 1px solid rgba(55, 53, 47, 0.09);
-  border-radius: 6px;
-  box-sizing: border-box;
-}
+/* Copy page 박스 옆(왼쪽)에 같은 결의 버튼 한 개. float-end 컨테이너 옆이라 자동으로 우측 상단에 정렬됨. */
 
 .button {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 6px 12px;
-  border-radius: 6px;
+  gap: 6px;
+  margin-right: 8px;
+  padding: 6px 10px;
   border: 1px solid rgba(55, 53, 47, 0.14);
+  border-radius: 6px;
   background: #ffffff;
   color: rgb(55, 53, 47);
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.2;
   cursor: pointer;
+  float: right;
   transition: background 120ms ease, border-color 120ms ease, color 120ms ease;
 }
 
@@ -44,17 +35,11 @@
 
 .icon {
   font-size: 0.95rem;
+  line-height: 1;
 }
 
-.hint {
-  font-size: 0.8125rem;
-  color: rgb(120, 119, 116);
-  line-height: 1.4;
-}
-
-:global(.dark) .wrap {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.14);
+.label {
+  white-space: nowrap;
 }
 
 :global(.dark) .button {
@@ -71,8 +56,4 @@
   background: rgba(106, 140, 255, 0.18);
   border-color: #6A8CFF;
   color: #c1d3ff;
-}
-
-:global(.dark) .hint {
-  color: rgba(255, 255, 255, 0.55);
 }

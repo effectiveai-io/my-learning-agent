@@ -3,6 +3,7 @@ import { Head } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import SlideMode from '../components/SlideMode'
 import { SlideViewProvider } from '../components/SlideView'
+import { SlideTogglePortal } from '../components/SlideTogglePortal'
 import 'nextra-theme-docs/style.css'
 import './globals.css'
 
@@ -75,6 +76,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           >
             {children}
           </Layout>
+          <SlideTogglePortal />
           <SlideMode />
         </SlideViewProvider>
       </body>
