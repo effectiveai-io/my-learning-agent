@@ -138,18 +138,14 @@ Inbox에 매달리면 PIM에 빠집니다. 자료 수집·태그·폴더에 석 
 
 6원칙은 모두 **사람이 다시 읽고 학습하기 위한** 원칙이고, ai-wiki로 복제될 때 LLM이 읽기 좋은 형태로 자동 변환됩니다.
 
-```mermaid
-flowchart LR
-    F1["🧭<br/>첫 줄 =<br/>가장 강력한 주장"]
-    F2["📝<br/>한 단락<br/>한 아이디어"]
-    F3["🔗<br/>위키 · 상대경로<br/>링크 (순환 OK)"]
-    F4["🔍<br/>파일명 =<br/>인출 단서"]
-    F5["📂<br/>평면 배치<br/>(폴더 거의 안 씀)"]
-    F6["📖<br/>사실이 아니라<br/>이야기"]
-
-    classDef form fill:#fafce0,stroke:#b59f3b,stroke-width:2px,color:#5b4a0e
-    class F1,F2,F3,F4,F5,F6 form
-```
+<CardGrid columns={3}>
+  <Card title="첫 줄 = 강력한 주장" icon="🧭" />
+  <Card title="한 단락 한 아이디어" icon="📝" />
+  <Card title="위키 · 상대경로 링크" icon="🔗" />
+  <Card title="파일명 = 인출 단서" icon="🔍" />
+  <Card title="평면 배치" icon="📂" />
+  <Card title="사실이 아니라 이야기" icon="📖" />
+</CardGrid>
 
 여섯 가지 원칙을 한 줄씩 풀어보면:
 
