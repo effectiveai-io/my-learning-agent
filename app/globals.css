@@ -343,6 +343,22 @@ article td {
   border-bottom-color: rgba(255, 255, 255, 0.09);
 }
 
+/* Korean+English mixed tables — keep words intact so column 1 doesn't shrink
+ * to one-character width when column 3 has a long sentence. */
+article th,
+article td {
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
+/* But inline code (URLs, paths, long tokens) must still be able to break,
+ * otherwise it overflows the cell. */
+article th code,
+article td code {
+  word-break: break-all;
+  overflow-wrap: anywhere;
+}
+
 /* Navbar 스타일 */
 nav[class*='nextra'] a {
   font-weight: 500;

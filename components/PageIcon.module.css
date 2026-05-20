@@ -12,6 +12,9 @@
   margin: 0;
   object-fit: contain;
   user-select: none;
+  /* article img 글로벌의 보더·라운드 덮어쓰기 — 노션 페이지 아이콘은 raw 일러스트가 그대로 떠 있는 느낌이어야 함 */
+  border: none;
+  border-radius: 0;
 }
 
 @media (max-width: 640px) {
