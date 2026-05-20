@@ -2,6 +2,7 @@ import { Footer, Layout, Navbar, ThemeSwitch } from 'nextra-theme-docs'
 import { Head } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import SlideMode from '../components/SlideMode'
+import { SlideViewProvider } from '../components/SlideView'
 import 'nextra-theme-docs/style.css'
 import './globals.css'
 
@@ -50,30 +51,32 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         />
       </Head>
       <body>
-        <Layout
-          navbar={
-            <Navbar logo={logo}>
-              <ThemeSwitch lite className="theme-switch-navbar" />
-            </Navbar>
-          }
-          pageMap={await getPageMap()}
-          docsRepositoryBase="https://github.com/imakerjun/my-learning-agent/tree/main"
-          darkMode={false}
-          sidebar={{
-            defaultMenuCollapseLevel: 1,
-            toggleButton: true,
-          }}
-          footer={
-            <Footer>
-              <span style={{ fontSize: '0.8125rem', color: 'rgb(155, 155, 155)' }}>
-                © {new Date().getFullYear()} 나의 학습 에이전트 · 인프런 AI 엔지니어링 챌린지
-              </span>
-            </Footer>
-          }
-        >
-          {children}
-        </Layout>
-        <SlideMode />
+        <SlideViewProvider>
+          <Layout
+            navbar={
+              <Navbar logo={logo}>
+                <ThemeSwitch lite className="theme-switch-navbar" />
+              </Navbar>
+            }
+            pageMap={await getPageMap()}
+            docsRepositoryBase="https://github.com/imakerjun/my-learning-agent/tree/main"
+            darkMode={false}
+            sidebar={{
+              defaultMenuCollapseLevel: 1,
+              toggleButton: true,
+            }}
+            footer={
+              <Footer>
+                <span style={{ fontSize: '0.8125rem', color: 'rgb(155, 155, 155)' }}>
+                  © {new Date().getFullYear()} 나의 학습 에이전트 · 인프런 AI 엔지니어링 챌린지
+                </span>
+              </Footer>
+            }
+          >
+            {children}
+          </Layout>
+          <SlideMode />
+        </SlideViewProvider>
       </body>
     </html>
   )

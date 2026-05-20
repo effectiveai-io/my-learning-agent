@@ -13,6 +13,8 @@ import { Reference } from './components/Reference'
 import { Anchor } from './components/Anchor'
 import { CodeBlock } from './components/CodeBlock'
 import { PageIcon } from './components/PageIcon'
+import { SectionSlide } from './components/SectionSlide'
+import { SlideToggleButton } from './components/SlideToggleButton'
 
 const docsComponents = getDocsMDXComponents()
 
@@ -35,6 +37,8 @@ export function useMDXComponents(components?: Record<string, React.FC>) {
     Step,
     Reference,
     PageIcon,
+    SectionSlide,
+    SlideToggleButton,
     ...components,
   }
 }

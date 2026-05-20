@@ -12,7 +12,11 @@
 
 아래 세 단계로 풀어 봅니다.
 
+<SlideToggleButton />
+
 ## 1) 핵심 메커니즘 — 한 저장소에 두 영역
+
+<SectionSlide n={1} />
 
 세 주체가 협업한다고 했지만, 그 골격은 의외로 단순합니다. 두 영역으로 자리를 나누면 정리됩니다.
 
@@ -53,6 +57,8 @@ flowchart LR
     class LLM llm
 ```
 
+<SectionSlide n={2} />
+
 핵심은 세 가지입니다.
 
 첫째, **사람은 `outbox/`(소화한 글)와 `.inbox/`(raw 자료) 두 자리만 신경쓰면 됩니다.** 본인에게 맞는 분류와 의미 있는 파일명으로 outbox에 글을 쓰고, raw 자료는 `/수집`으로 .inbox에 던집니다. 시간순 prefix 같은 운영 정보는 신경 안 써도 됩니다.
@@ -66,6 +72,8 @@ flowchart LR
 </Callout>
 
 ### outbox 경계 — 단위는 내 손, 다듬기는 AI 손
+
+<SectionSlide n={3} />
 
 > **"AI한테 다시 써줘"는 PIM, "내가 약한 부분 짚어줘"는 PKM.**
 
@@ -95,6 +103,8 @@ AI를 **출력자**가 아니라 **인출자**로 씁니다. AI가 약점을 짚
 함정: 단락 통째로 AI에 던지고 "더 좋게 다듬어줘"라고 부르는 패턴. 결과물은 깔끔해지지만 **내가 어디서 막혔는지**가 outbox에서 지워집니다. 1주일 뒤 그 글을 다시 봐도 내 사고의 흔적이 안 남고, 카파시 wiki 외형만 갖춘 PIM 상태가 됩니다.
 
 ## 2) 왜 Outbox가 중심인가
+
+<SectionSlide n={4} />
 
 지금까지 알려진 여러 지식 관리 방법론 — [안드레 카파시](https://karpathy.github.io/)의 LLM wiki, [PARA](https://fortelabs.com/blog/para/), [ACE](https://notes.linkingyourthinking.com/Cards/A.C.E.+Folder+System), [Zettelkasten](https://en.wikipedia.org/wiki/Zettelkasten) — 이름은 다 다르지만, 학습 과학으로 거슬러 올라가면 같은 결론에 모입니다.
 
@@ -129,6 +139,8 @@ flowchart LR
     class Think,Act result
 ```
 
+<SectionSlide n={5} />
+
 조금 더 풀어보면 — 각 효과가 우리에게 주는 메시지는 이렇습니다.
 
 **첫째, 인출 효과.** [Roediger와 Karpicke가 2006년에 발표한 실험](https://psychnet.wustl.edu/memory/wp-content/uploads/2018/04/Karpicke-Roediger-2008_Sci.pdf)에서, 시험(인출)을 본 학생이 같은 시간 동안 다시 읽기만 한 학생보다 장기 기억이 약 1.5〜2배 강했습니다. 즉 Inbox에 자료를 100개 모아두는 것보다, Outbox에 단 한 줄이라도 직접 쓰는 게 학습 효과가 큽니다.
@@ -145,6 +157,8 @@ Inbox에 매달리면 PIM에 빠집니다. 자료 수집·태그·폴더에 석 
 
 ## 3) `outbox/` 한 글의 형식 — 6원칙
 
+<SectionSlide n={6} />
+
 앞에서 두 영역으로 자리를 나눴으니, 이제 사람이 직접 쓰는 `outbox/`에 어떤 형식으로 글을 쓰면 좋을지를 정리할 차례입니다. **LLM 친화는 자동 동기화 단계에서 자연스럽게 챙겨지므로, 사람이 신경 쓸 건 사람용 형식뿐**입니다. 출발은 항상 `outbox/`의 글 한 편을 잘 쓰는 것.
 
 6원칙은 **사람이 다시 읽고 학습하기 위한 글 한 편의 형식**입니다(분류 폴더는 본인 자유). `.ai-wiki/`로 복제될 때 LLM이 읽기 좋은 형태로 자동 변환됩니다.
@@ -157,6 +171,8 @@ Inbox에 매달리면 PIM에 빠집니다. 자료 수집·태그·폴더에 석 
   <Card title="평면 배치" image="/illustrations/card-flat-desk.png" />
   <Card title="사실이 아니라 이야기" image="/illustrations/card-storytelling.png" />
 </CardGrid>
+
+<SectionSlide n={7} />
 
 여섯 가지 원칙을 한 줄씩 풀어보면:
 
