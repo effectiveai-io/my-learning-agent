@@ -9,7 +9,16 @@
 
 .wrapper {
   position: relative;
-  margin: 0.5em 0 1.25em;
+  width: 100%;
+  max-width: 800px;
+  box-sizing: border-box;
+  margin: 0.5em auto 1.25em;
+}
+
+.wrapper :global(.nextra-code) {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* 좌측 상단 언어 라벨 — 작은 회색 모노스페이스.
@@ -39,6 +48,10 @@
 /* Nextra Tailwind 클래스를 그대로 둔 채로 시각만 덮어쓴다.
  * `:where()`로 명세도를 0으로 깎고, 필요한 속성에만 !important. */
 .wrapper :where(pre) {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0 !important;
   background: #f7f6f3 !important;
   /* ring → 부드러운 단일 border로 변환 */
   --tw-ring-shadow: 0 0 #0000 !important;
