@@ -247,6 +247,11 @@ npm run build      # Vercel 빌드와 동일 검증
 - Callout 안 blockquote 이중 박스 해소 (CSS inline 변환)
 - 네비 헤더 날짜 제거 ("1회차 · 5/13" → "1회차")
 - 2회차를 강사 진행(`flow.mdx`)에서 학습 단원 5개로 재구조 (knowledge / mechanism / setup / outbox / newsletter)
+- 한국어 본문 타이포 결정: weight 430 / letter-spacing 0 / subpixel / 색 #37352F
+- 본문 폭 720 → **800** (한국어 50자/줄 기준)
+- 다크 모드 토글 **OFF** (`darkMode={false}`) — CSS는 보존
+- 다크 카드 톤 강화 (검정에서 카드가 묻히지 않도록)
+- Mermaid 모바일: SVG `min-width: 560px` + 가로 스크롤
 
 ## 다음 작업 후보
 
@@ -262,11 +267,14 @@ npm run build      # Vercel 빌드와 동일 검증
 
 ## 컨벤션 요약 (한 줄)
 
+- **결정 완료 토큰은 임의 변경 X** — 위 "🔒 결정 완료" 표를 먼저 보고, 흔들 거면 사용자 합의 먼저
+- **시각 토큰은 한 번에 1개씩** — 같은 파일을 한 세션에 3번 이상 건드리고 있으면 결정 미달이라는 신호
 - **콘텐츠는 라이브 직후 보강이 원칙** — 이번 주 라이브 자료가 가장 최신
 - **이중 박스·이중 보더 피하기** — Callout 안 blockquote, Card 안 Card 금지
 - **메인 헤딩엔 일러스트** — `## ![](/illustrations/...) 제목` 일관 유지
 - **본인 학습 데이터는 .inbox/ 또는 별도 저장소** — 공개 repo에 직접 푸시 X
 - **시각 변경 후 Playwright로 확인** — 사용자 피드백: "페이지 수정 후 시각 검토"
+- **콘텐츠 수정 전 STYLE.md 1회 읽기 + 작성 후 자가 점검 1회**
 
 ## 사용자 메모리 (외부)
 

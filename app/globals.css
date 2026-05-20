@@ -247,6 +247,22 @@ article blockquote {
   border-radius: 0 6px 6px 0;
 }
 
+/* 인용 좌측 정렬 ("hanging accent" 패턴):
+ * blockquote는 border-left(3px) + padding-left(1em)가 안의 텍스트를 19px 안쪽으로 민다.
+ * 본문(800px) vs 인용 안 텍스트 사이의 시각적 어긋남이 생기는 원인.
+ *
+ * 해결: max-width를 본문보다 2×(border+padding) 만큼 더 넓힌다.
+ * margin-inline: auto로 자동 가운데 정렬되면 양쪽으로 19px씩 bleed-out 되어
+ * 좌측 bar가 본문 padding 영역에 자리잡고 안의 텍스트가 본문 텍스트와 정렬된다.
+ *
+ * negative margin보다 안전한 패턴 — auto centering과 충돌하지 않고
+ * 모든 부모 폭에서 안정적으로 작동한다.
+ *
+ * 본문 max-width 변경 시 이 값도 같이 맞춰야 함. */
+article main > blockquote {
+  max-width: calc(800px + 2em + 6px);
+}
+
 article blockquote p {
   font-style: normal;
   margin-bottom: 0.4em;
