@@ -1,38 +1,116 @@
 # 3. 저장소 셋팅
 
-> 미리 만든 초안 저장소를 clone하고, 함께 동작할 스킬 세트를 깝니다. **셋업은 10분 안에 끝내고 5번 단계로 넘어가는 게 목적**입니다.
+> 앞 페이지에서 본 `outbox/` + `ai-wiki/` 구조를, 본인 컴퓨터에 10분 안에 깝니다. **셋업 자체가 학습은 아닙니다.** 빨리 끝내고 [4번](/week2/outbox)에서 본인 데이터 만지러 가는 게 목적.
 
-<Callout type="warning">
-이 페이지는 **본문 채워야 함** — 초안 저장소 GitHub URL과 스킬 설치 명령어 보강 예정.
-</Callout>
+이 페이지를 따라가면 끝났을 때 본인에게 남아 있는 것은 세 가지입니다.
 
-## 클론
+1. `~/git/my-learning-agent/` 폴더 (clone 완료)
+2. 빈 `outbox/`에 본인 손으로 넣은 글 1개
+3. `/morning`을 한 번 돌려서 `ai-wiki/`에 복제된 결과물 1개
+
+이 셋이 안 보이면 셋업이 안 끝난 겁니다. 다음 페이지로 넘어가지 마세요.
+
+## 셋업 한눈에
+
+<CardGrid columns={3}>
+  <Card title="저장소 clone" icon="📦" meta="2분">
+    starter repo를 본인 로컬로 가져옵니다. 폴더 골격이 이미 잡혀 있어요.
+  </Card>
+  <Card title="커맨드 둘러보기" icon="⌨️" meta="3분">
+    `.claude/commands/` 안의 `/morning` · `/digest`를 한 번 열어봅니다.
+  </Card>
+  <Card title="셋업 검증 1줄" icon="✅" meta="5분">
+    빈 outbox에 본인 글 1개 → `/morning` → ai-wiki 복제 확인.
+  </Card>
+</CardGrid>
+
+## 1) 저장소 clone · 2분
+
+starter 저장소를 clone합니다. 이미 `outbox/`, `ai-wiki/`, `.claude/commands/` 골격이 들어가 있어 손으로 만들 게 없습니다.
 
 ```bash
-git clone https://github.com/__USER__/__REPO__.git my-learning-agent
+cd ~/git    # 또는 본인이 작업하는 폴더
+git clone https://github.com/imakerjun/my-learning-agent-starter.git my-learning-agent
 cd my-learning-agent
 ```
 
-## 저장소 구조
+<Callout type="warning">
+starter 저장소 URL은 **5/20 라이브 직전 공개**됩니다. 라이브 전에는 비어 있을 수 있어요. 라이브에서는 같이 clone합니다.
+</Callout>
+
+clone이 끝나면 폴더 구조가 이렇게 보입니다.
 
 ```
 my-learning-agent/
-├── inbox/              # 원자료 그대로 던지는 곳
-├── outbox/             # 매일 아침 산출
-├── processed/          # 처리 후 이동 (선택)
+├── outbox/                 # 사람용 · 본인이 직접 쓰는 자리 (append-only)
+│   └── README.md
+├── ai-wiki/                # LLM용 · /morning이 매일 자동으로 채우는 자리
+│   └── .gitkeep
 ├── .claude/
 │   ├── commands/
-│   │   ├── morning.md
-│   │   └── digest.md
-│   └── settings.json
+│   │   ├── morning.md      # 매일 아침 동기화 + 메타인지 1줄
+│   │   └── digest.md       # 일요일 7일 누적 회고
+│   └── settings.json       # 권한 · 기본 모델
+├── .gitignore              # outbox/* 본인 데이터는 push 여부 본인 선택
 └── README.md
 ```
 
-## 스킬 세트 설치
+여기서 **본인이 직접 쓰는 자리는 `outbox/` 한 곳**입니다. `ai-wiki/`는 한 번도 직접 만지지 않습니다. 헷갈리면 [2번 메커니즘](/week2/mechanism)을 한 번 더 보세요.
 
-```bash
-# TODO: 라이브 직전 정리
-claude skill install ...
-```
+<Callout type="tip">
+`outbox/`를 공개 repo에 push할지 비공개로 둘지는 본인 판단입니다. 본인 PR·노션·미팅 기록이 들어간다면 `.gitignore`에 `outbox/`를 추가해 로컬에만 두는 걸 권장. 이 사이트의 `.gitignore`도 그렇게 잡혀 있습니다.
+</Callout>
+
+## 2) 커맨드 둘러보기 · 3분
+
+`.claude/commands/` 안에 들어 있는 슬래시 커맨드 두 개를 한 번씩 열어봅니다. 본인이 라이브 후 직접 고치게 될 자리.
+
+| 커맨드 | v1 | 역할 | 트리거 |
+|---|---|---|---|
+| `/morning` | ✅ | 어제 `outbox/`를 읽고 → `ai-wiki/`에 시간순 prefix로 복제 + 본문 3줄(메타인지 1줄 · 액션 1줄 · 근거 1줄)을 새 outbox 글로 생성 | 매일 아침 7시 (스케줄) |
+| `/digest` | ✅ | 최근 7일 `outbox/` 글을 한 페이지로 누적 · 패턴 1줄 짚음 | 일요일 수동 |
+
+라이브에서는 `/morning`만 v1에 넣고, `/digest`는 미션 7일을 채운 다음 주에 본인이 처음 돌려봅니다.
+
+<Callout type="info">
+**커맨드 본문은 프롬프트 한 장**입니다. `.claude/commands/morning.md` 파일을 열면 자연어 markdown이 그대로 들어 있어요. 라이브 후 본인 outbox 패턴을 보고 본문 한 줄씩 고치는 게 4회차로 이어지는 작업.
+</Callout>
+
+`/morning`의 v0 본문은 [4번 페이지](/week2/outbox#커맨드-v0--morning)에 그대로 박혀 있습니다. 셋업 단계에서는 본문을 읽기만 하고, 손으로 고치는 건 outbox에 본인 글이 한 편 쌓인 뒤에.
+
+## 3) 셋업 검증 1줄 · 5분
+
+clone만 하고 다음으로 넘어가면 v1이 안 돕니다. **본인이 손으로 한 번 굴려보고 결과물이 눈에 보이는 시점까지** 셋업입니다.
+
+<Steps>
+<Step title='outbox에 글 1개 넣기 · 2분'>
+`outbox/2026-05-20-셋업-테스트.md` 파일을 직접 만들고, [6원칙](/week2/mechanism#3-outbox-한-글의-형식--6원칙)의 첫 줄 주장 한 줄만 적어봅니다. 예: *"나는 PKM이 아니라 PIM에 빠져 있었다. 폴더만 깔끔하고 다시 안 봤기 때문이다."*
+</Step>
+<Step title='/morning 한 번 돌리기 · 1분'>
+Claude Code에서 `/morning` 입력. `ai-wiki/`에 같은 글이 시간순 prefix(`2026-05-20-셋업-테스트.md`)로 복제되는지 봅니다.
+</Step>
+<Step title='ai-wiki에 파일 1개 떴는지 본인 눈으로 확인 · 2분'>
+`ls ai-wiki/` 또는 에디터에서 폴더 열기. 파일 1개가 보이면 셋업 끝. 안 보이면 권한 설정(`settings.json`) 또는 커맨드 본문에서 막힌 것 — 라이브에서 같이 짚습니다.
+</Step>
+</Steps>
+
+<Callout type="tip">
+🎯 검증의 본질은 "동기화가 동작하는가"가 아니라, **본인이 `outbox/`에 첫 글을 한 줄 적었는가**입니다. 그 첫 줄이 오늘의 outbox 첫 데이터.
+</Callout>
+
+## 다음 주에 추가될 후보 (참고)
+
+v1에는 안 들어갑니다. 본인이 outbox를 7일 굴려본 뒤, 막힌 지점이 보이면 그때 하나씩 깝니다.
+
+| 이름 | 종류 | 역할 |
+|---|---|---|
+| `/draft <주제>` | 커맨드 | outbox에 6원칙 템플릿으로 새 글 골격만 생성 (첫 줄 주장은 빈 칸) |
+| `/critique` | 커맨드 | outbox 최근 글을 AI가 **약점만 짚어줌**. "다시 써줘" X · "내가 약한 부분 짚어줘" O ([2번 메타 룰](/week2/mechanism#outbox-경계--단위는-내-손-다듬기는-ai-손)) |
+| `korean-spell-check` | 스킬 | 한국어 맞춤법 다듬기. 단락 통째 재작성 X, 글자 단위 교정만 |
+| `humanizer` | 스킬 | AI 톤으로 빠진 문장을 본인 톤으로 되돌림 (메이커준 본인 글로벌 스킬) |
+
+<Callout type="info">
+스킬은 Claude Code 전역(`~/.claude/skills/`)에 깔리는 자산입니다. 학습 에이전트 한 저장소만의 것이 아니라 본인이 평소에 쓰는 도구 세트의 일부 — 한 번 깔면 다른 프로젝트에서도 같이 작동합니다.
+</Callout>
 
 → 다음: [4. outbox 설계 + 데이터 + 커맨드](/week2/outbox)

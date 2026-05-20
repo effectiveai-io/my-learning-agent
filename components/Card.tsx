@@ -4,22 +4,31 @@ import styles from './Card.module.css'
 interface CardProps {
   title: string
   icon?: string
+  image?: string
+  vertical?: boolean
   href?: string
   disabled?: boolean
   meta?: string
   children?: ReactNode
 }
 
-export function Card({ title, icon, href, disabled, meta, children }: CardProps) {
+export function Card({ title, icon, image, vertical, href, disabled, meta, children }: CardProps) {
+  const isVertical = vertical || Boolean(image)
+  const cardClass = `${styles.card} ${isVertical ? styles.vertical : ''} ${disabled ? styles.disabled : ''}`
+
   const content = (
-    <div className={`${styles.card} ${disabled ? styles.disabled : ''}`}>
-      {icon && <span className={styles.icon}>{icon}</span>}
+    <div className={cardClass}>
+      {image ? (
+        <img src={image} alt="" className={styles.image} />
+      ) : (
+        icon && <span className={styles.icon}>{icon}</span>
+      )}
       <div className={styles.body}>
         <h3 className={styles.title}>{title}</h3>
         {children && <div className={styles.description}>{children}</div>}
         {meta && <span className={styles.meta}>{meta}</span>}
       </div>
-      {href && !disabled && <span className={styles.arrow} aria-hidden="true">&rarr;</span>}
+      {!isVertical && href && !disabled && <span className={styles.arrow} aria-hidden="true">&rarr;</span>}
     </div>
   )
 
