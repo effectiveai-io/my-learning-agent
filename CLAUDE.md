@@ -44,7 +44,10 @@ my-learning-agent/
 │   └── layout.tsx               # 메타데이터, 로고, 푸터, docsRepositoryBase
 ├── components/                  # MDX 커스텀 컴포넌트
 │   ├── Hero / Card / CardGrid / Callout / Steps / Timeline / Toggle / Placeholder
+│   ├── SlideMode                # 강사 hidden feature, Shift+P 단축키로만 진입
 │   └── *.module.css
+├── lib/
+│   └── slides.ts                # 라우트 → 슬라이드 데크 정적 맵
 ├── content/                     # MDX 콘텐츠
 │   ├── index.mdx                # 랜딩
 │   ├── _meta.ts                 # 최상위 네비 (about / week1 / week2 / ...)
@@ -69,11 +72,13 @@ my-learning-agent/
 │       ├── newsletter.mdx       # 5. 뉴스레터 스케줄 + 메타인지 지도
 │       └── mission.mdx
 ├── public/
-│   └── illustrations/           # japan-images에서 가져온 헤딩 일러스트 4종
-│       ├── heading-live.png     # AI と話す人 — 이번 주 라이브
-│       ├── heading-upcoming.png # スケジュール書かれたカレンダー — 예정 회차
-│       ├── heading-demoday.png  # スピーチをしている学生 — 데모데이
-│       └── heading-tagline.png  # 目標を定めた人 — 챌린지 한 줄
+│   ├── illustrations/           # japan-images에서 가져온 헤딩 일러스트 4종
+│   │   ├── heading-live.png     # AI と話す人 — 이번 주 라이브
+│   │   ├── heading-upcoming.png # スケジュール書かれたカレンダー — 예정 회차
+│   │   ├── heading-demoday.png  # スピーチをしている学生 — 데모데이
+│   │   └── heading-tagline.png  # 目標を定めた人 — 챌린지 한 줄
+│   └── slides/                  # 라우트별 강의 슬라이드 (Shift+P 모드용)
+│       └── week2/knowledge/     # 1.png ~ 7.png
 ├── mdx-components.tsx           # Card/Callout/CardGrid 등을 글로벌 MDX 사용 등록
 ├── next.config.mjs
 └── package.json                 # Nextra 4.5 / Next 15 / React 19
@@ -177,6 +182,10 @@ my-learning-agent/
 | 모바일 mermaid | `min-width: 560px` + 부모 가로 스크롤 (`@media (max-width: 768px)`) | SVG inline `max-width`로 인한 텍스트 축소 방지. 새 mermaid 추가 시 별도 처리 불필요 |
 | 검색 엔진 | **Pagefind** (`postbuild`로 인덱스 생성, devDep `pagefind`) | Nextra 4가 FlexSearch → Pagefind로 변경. **빌드 통합이 수동**. **`npm run dev`에서는 검색 동작 X** — 검증은 `npm run build && npm run start`로. Vercel은 postbuild를 자동 호출하므로 배포 환경에서는 정상 동작. 한국어 stemming 미지원 (어근 매칭 X)은 Pagefind 자체 제약 |
 | 범위 표기 | **물결대시 `〜` (U+301C)** | GFM의 `~text~` strikethrough 충돌 차단. 한국·일본 출판 표준 기호라 본문 톤도 자연스러움. `숫자~숫자` 입력 시 사고 발생 — 변경 시 위 "범위·기호 표기 가드레일" 표도 같이 갱신 |
+| 슬라이드 모드 단축키 | **`Shift + P`** (Presentation) | 라이브 강의 중 단축키 하나로 풀스크린 전환. `Cmd+K`(검색)·`Cmd+B`(사이드바)와 충돌 X. 모드 안: `←/→` 이동, `1〜9` 점프, `Home/End`, `Esc`/`q` 닫기, Space/PageDown도 다음 슬라이드 |
+| 슬라이드 모드 노출 | **UI 노출 없음, 단축키 전용** | 강사 hidden feature. 사이드바·헤더·검색에 흔적 X — 수강생 화면 공유 시 자연스럽게 강의 모드만 보이도록 |
+| 슬라이드 배경 | **`#000`** | 강의장 프로젝션·모니터 가독성 우선. 노션 본문 톤(#37352F)과 별개 — 발표 컨텍스트는 검정 단색이 시각 노이즈 최소 |
+| 슬라이드 이미지 컨벤션 | **`public/slides/<route>/<n>.png` 1-indexed** | 라우트와 폴더가 1:1로 매칭. 새 데크 추가는 폴더 하나 + `lib/slides.ts` 한 줄. 비율은 16:9 가정 + `object-fit: contain` (다른 비율도 깨지지 않음) |
 
 ## 🧭 콘텐츠 수정 작업 순서
 
@@ -270,6 +279,7 @@ npm run build      # Vercel 빌드와 동일 검증
 - 다크 카드 톤 강화 (검정에서 카드가 묻히지 않도록)
 - Mermaid 모바일: SVG `min-width: 560px` + 가로 스크롤
 - 검색 복구: Nextra 4 Pagefind 수동 통합 (devDep `pagefind` + `postbuild` 스크립트 + `public/_pagefind/` gitignore)
+- 슬라이드 모드 추가: `Shift + P`로 풀스크린 강의 모드 진입 — UI 노출 없는 강사 hidden feature. `/week2/knowledge` 7장으로 시작 (`components/SlideMode` + `lib/slides.ts` 정적 맵, `public/slides/<route>/<n>.png` 1-indexed)
 
 ## 다음 작업 후보
 

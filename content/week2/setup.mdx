@@ -13,18 +13,18 @@
 ## 셋업 한눈에
 
 <CardGrid columns={3}>
-  <Card title="저장소 clone" icon="📦" meta="2분">
+  <Card title="저장소 clone" image="/illustrations/card-setup-clone.png">
     starter repo를 본인 로컬로 가져옵니다. 폴더 골격이 이미 잡혀 있어요.
   </Card>
-  <Card title="커맨드 둘러보기" icon="⌨️" meta="3분">
+  <Card title="커맨드 둘러보기" image="/illustrations/card-setup-commands.png">
     `.claude/commands/` 안의 `/morning` · `/digest`를 한 번 열어봅니다.
   </Card>
-  <Card title="셋업 검증 1줄" icon="✅" meta="5분">
+  <Card title="셋업 검증 1줄" image="/illustrations/card-setup-verify.png">
     빈 outbox에 본인 글 1개 → `/morning` → ai-wiki 복제 확인.
   </Card>
 </CardGrid>
 
-## 1) 저장소 clone · 2분
+## 1) 저장소 clone
 
 starter 저장소를 clone합니다. 이미 `outbox/`, `ai-wiki/`, `.claude/commands/` 골격이 들어가 있어 손으로 만들 게 없습니다.
 
@@ -61,7 +61,7 @@ my-learning-agent/
 `outbox/`를 공개 repo에 push할지 비공개로 둘지는 본인 판단입니다. 본인 PR·노션·미팅 기록이 들어간다면 `.gitignore`에 `outbox/`를 추가해 로컬에만 두는 걸 권장. 이 사이트의 `.gitignore`도 그렇게 잡혀 있습니다.
 </Callout>
 
-## 2) 커맨드 둘러보기 · 3분
+## 2) 커맨드 둘러보기
 
 `.claude/commands/` 안에 들어 있는 슬래시 커맨드 두 개를 한 번씩 열어봅니다. 본인이 라이브 후 직접 고치게 될 자리.
 
@@ -78,7 +78,7 @@ my-learning-agent/
 
 `/morning`의 v0 본문은 [4번 페이지](/week2/outbox#커맨드-v0--morning)에 그대로 박혀 있습니다. 셋업 단계에서는 본문을 읽기만 하고, 손으로 고치는 건 outbox에 본인 글이 한 편 쌓인 뒤에.
 
-## 3) 셋업 검증 1줄 · 5분
+## 3) 셋업 검증 1줄
 
 clone만 하고 다음으로 넘어가면 v1이 안 돕니다. **본인이 손으로 한 번 굴려보고 결과물이 눈에 보이는 시점까지** 셋업입니다.
 
