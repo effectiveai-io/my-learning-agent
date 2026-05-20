@@ -96,6 +96,7 @@ article main > div[class*="Card_card"],
 article main > a[class*="link"] {
   max-width: 800px;
   margin-inline: auto;
+  box-sizing: border-box;
 }
 
 .dark article {
@@ -109,7 +110,7 @@ article h1 {
   margin-top: 2rem;
   margin-bottom: 0.25em;
   line-height: 1.2;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 
 article h2 {
@@ -253,27 +254,18 @@ article blockquote {
   border-radius: 0 6px 6px 0;
 }
 
-/* 인용 좌측 정렬 ("hanging accent" 패턴, 부모 폭 무관 버전):
+/* 인용 좌측 정렬:
  *
- * 문제: blockquote의 border(3px) + padding-left(1em=16px) = 19px가 안의 텍스트를
- *  본문 텍스트보다 19px 안쪽에서 시작하게 만든다.
+ * 기존에는 blockquote 안 텍스트 시작점을 본문 텍스트와 맞추기 위해
+ * border + padding만큼 박스 자체를 왼쪽으로 빼는 hanging accent 계산을 썼다.
+ * 하지만 강조 박스의 외곽선이 본문 그리드 밖으로 튀어나와 보여서,
+ * 이제는 박스 외곽을 본문 폭에 맞추고 내부 여백은 callout의 일부로 둔다.
  *
- * 해결: margin-left를 percentage-based로 계산해서 부모 폭과 무관하게
- *  본문 좌측보다 정확히 19px LEFT에 blockquote 좌측을 배치한다.
- *
- *   margin-left = 부모중간(50%) - 본문절반(400px) - bleed(19px)
- *                = 부모 폭이 어떻든 본문 좌측 - 19px
- *
- *  그러면 blockquote 안 텍스트 = 좌측 + border + padding-left = 본문 좌측 ✓
- *
- *  max-width를 본문(800) + bleed(19) = 819로 잡아 우측 edge도 본문과 정렬.
- *
- * !important: Nextra의 Tailwind blockquote 스타일을 덮어쓰기 위해.
- * 본문 max-width(800)나 padding/border 변경 시 아래 calc도 같이 맞출 것. */
+ * !important: Nextra의 Tailwind blockquote 스타일을 덮어쓰기 위해. */
 article main > blockquote {
-  margin-left: calc(50% - 400px - 1em - 3px) !important;
-  margin-right: auto !important;
-  max-width: calc(800px + 1em + 3px) !important;
+  margin-inline: auto !important;
+  max-width: 800px !important;
+  box-sizing: border-box;
 }
 
 article blockquote p {

@@ -18,7 +18,7 @@ const logo = (
     style={{
       fontWeight: 600,
       fontSize: '0.9375rem',
-      letterSpacing: '-0.01em',
+      letterSpacing: 0,
       display: 'inline-flex',
       alignItems: 'center',
       gap: '0.4rem',
