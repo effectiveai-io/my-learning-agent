@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "pagefind --site .next/server/app --output-path public/_pagefind",
     "start": "next start",
     "check:md": "./scripts/check-korean-bold.sh"
   },
@@ -18,6 +19,7 @@
   "devDependencies": {
     "@types/node": "^22",
     "@types/react": "^19",
+    "pagefind": "^1.4.0",
     "typescript": "^5"
   }
 }

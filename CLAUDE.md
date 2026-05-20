@@ -161,6 +161,7 @@ my-learning-agent/
 | 다크 모드 토글 | **OFF** (`darkMode={false}` in `app/layout.tsx`) | 라이브 도큐 통일성 우선. 단, `:global(.dark)` CSS는 보존 (시스템 prefers-color-scheme 대비) |
 | 다크 카드 톤 | `rgba(255,255,255,0.05)` bg / `0.14` border | 검정 배경에서 카드 경계가 묻히지 않도록 노션 다크 톤 맞춤 |
 | 모바일 mermaid | `min-width: 560px` + 부모 가로 스크롤 (`@media (max-width: 768px)`) | SVG inline `max-width`로 인한 텍스트 축소 방지. 새 mermaid 추가 시 별도 처리 불필요 |
+| 검색 엔진 | **Pagefind** (`postbuild`로 인덱스 생성, devDep `pagefind`) | Nextra 4가 FlexSearch → Pagefind로 변경. **빌드 통합이 수동**. **`npm run dev`에서는 검색 동작 X** — 검증은 `npm run build && npm run start`로. Vercel은 postbuild를 자동 호출하므로 배포 환경에서는 정상 동작. 한국어 stemming 미지원 (어근 매칭 X)은 Pagefind 자체 제약 |
 
 ## 🧭 콘텐츠 수정 작업 순서
 
@@ -253,6 +254,7 @@ npm run build      # Vercel 빌드와 동일 검증
 - 다크 모드 토글 **OFF** (`darkMode={false}`) — CSS는 보존
 - 다크 카드 톤 강화 (검정에서 카드가 묻히지 않도록)
 - Mermaid 모바일: SVG `min-width: 560px` + 가로 스크롤
+- 검색 복구: Nextra 4 Pagefind 수동 통합 (devDep `pagefind` + `postbuild` 스크립트 + `public/_pagefind/` gitignore)
 
 ## 다음 작업 후보
 
