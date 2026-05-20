@@ -135,6 +135,13 @@ my-learning-agent/
 | 호버 시 카드가 "사라지는" 느낌 | `background: #fff (밝아짐)` | `background: #f3f1ec (짙어짐)` | 페이지 흰 배경에 녹아들지 않게 — 호버는 항상 "더 짙어지는" 방향. |
 | 액센트 컬러가 테두리에 튐 | 호버 시 `border-color: blue` | 호버 시 화살표만 액센트, 테두리는 회색 짙어짐 | 강한 채도색은 사용자 멘탈모델에서 focus ring/selected로 읽힘. 액센트는 "다음 행동" 한 곳에만. |
 
+### 페이지 레이아웃 가드레일
+
+| 함정 | 잘못된 코드 | 올바른 코드 | 이유 |
+|---|---|---|---|
+| 컨텐츠가 좌측으로 쏠려 보임 | `max-width: 720px;` (단독) | `max-width: 720px; margin-inline: auto;` (짝) | `max-width`만 주면 블록이 좁아질 뿐 위치는 안 바뀜 — 부모 왼쪽에 달라붙음. Hero(text-align: center, 풀폭) 아래 컨텐츠가 좌측 쏠리는 시각 비대칭의 원인. |
+| Hero 폭과 본문 폭이 다름 | Hero 풀폭 + 본문 720px **좌측 정렬** | Hero 풀폭(text-align: center) + 본문 720px **+ margin-inline: auto** | 두 요소의 가운데 축이 같아야 페이지가 단단하게 느껴진다. |
+
 ### Steps / Timeline
 
 순서 있는 작업·일정은 `<Steps>`/`<Timeline>` 사용. 일반 ol/ul보다 시각 위계가 명확.

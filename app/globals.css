@@ -71,8 +71,13 @@ article {
   -moz-osx-font-smoothing: auto;
 }
 
-/* 본문 흐름 요소는 Notion 본문 너비(720px)로 제한.
- * Hero(Hero_hero__*)는 제외해서 풀폭 사용.
+/* 본문 흐름 요소는 Notion 본문 너비(720px)로 제한 + 가운데 정렬.
+ *
+ * ⚠️ max-width와 margin-inline: auto는 항상 짝.
+ * margin-inline: auto가 빠지면 블록이 좁아진 채 부모 왼쪽에 달라붙어
+ * Hero(text-align: center, 풀폭) 아래 컨텐츠가 좌측으로 쏠려 보인다.
+ *
+ * Hero(Hero_hero__*)는 의도적으로 제외해서 풀폭 사용.
  * Nextra 4 구조: article > main > * */
 article main > :where(p, h1, h2, h3, h4, h5, h6, ul, ol, blockquote, table, pre, hr),
 article main > div[class*="callout"],
@@ -84,6 +89,7 @@ article main > div[class*="Card_grid"],
 article main > div[class*="Card_card"],
 article main > a[class*="link"] {
   max-width: 720px;
+  margin-inline: auto;
 }
 
 .dark article {
