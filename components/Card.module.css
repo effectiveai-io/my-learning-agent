@@ -44,16 +44,21 @@
 }
 
 .title {
-  margin: 0 0 0.3em 0;
-  font-size: 1rem;
+  margin: 0 0 0.35em 0;
+  font-size: 1.0625rem;
   font-weight: 600;
   line-height: 1.4;
+  color: rgb(55, 53, 47);
+}
+
+:global(.dark) .title {
+  color: rgba(255, 255, 255, 0.95);
 }
 
 .description {
   margin: 0;
-  font-size: 0.8125rem;
-  color: rgba(55, 53, 47, 0.65);
+  font-size: 0.9375rem;
+  color: rgba(55, 53, 47, 0.82);
   line-height: 1.6;
 }
 
@@ -65,36 +70,36 @@
 /* Meta info (e.g. "7개 챕터 · 30+ 문서") */
 .meta {
   display: inline-block;
-  margin-top: 0.5rem;
-  font-size: 0.75rem;
-  color: rgba(55, 53, 47, 0.45);
+  margin-top: 0.55rem;
+  font-size: 0.8125rem;
+  color: rgba(55, 53, 47, 0.7);
   letter-spacing: 0.01em;
 }
 
 :global(.dark) .meta {
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.62);
 }
 
 /* Arrow indicator for linked cards */
 .arrow {
   flex-shrink: 0;
   font-size: 1.125rem;
-  color: rgba(55, 53, 47, 0.25);
+  color: rgba(55, 53, 47, 0.45);
   transition: color 0.15s ease, transform 0.15s ease;
   align-self: center;
 }
 
 .link:hover .arrow {
-  color: rgba(55, 53, 47, 0.6);
+  color: rgba(55, 53, 47, 0.75);
   transform: translateX(2px);
 }
 
 :global(.dark) .arrow {
-  color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.4);
 }
 
 :global(.dark) .link:hover .arrow {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 /* Grid - 노션 스타일 갤러리 */
