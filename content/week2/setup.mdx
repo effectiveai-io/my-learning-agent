@@ -44,9 +44,10 @@ my-brain-v1/
 │   └── 첫-outbox.md        # 복사해서 본인 첫 글로 바꾸는 템플릿
 ├── .inbox/                 # raw 자료 격리 — 외부 자료 · AI 산출물 모두 던지는 곳
 │   └── README.md
-├── .ai-wiki/               # LLM용 자동 복제본 — /돌아보기가 채움
+├── .ai-wiki/               # LLM용 자동 복제본 — /돌아보기·/수집이 채움
 │   ├── README.md           # 폴더 의도 + LLM이 읽기 좋은 형식
-│   └── TEMPLATE.md         # frontmatter + 인용 단서 템플릿
+│   ├── TEMPLATE.md         # frontmatter + 인용 단서 템플릿
+│   └── index.md            # LLM이 Query 시 가장 먼저 읽는 카탈로그 (카파시 wiki 패턴)
 ├── .claude/
 │   ├── commands/
 │   │   ├── 돌아보기.md     # outbox → .ai-wiki 복제 + 메타인지 1줄
