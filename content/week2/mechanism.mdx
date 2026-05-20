@@ -48,10 +48,10 @@ flowchart LR
 
 둘째, **자동 동기화가 `ai-wiki/`를 채웁니다.** `/morning` 커맨드가 `outbox/`의 글을 읽어 시간 prefix로 `ai-wiki/`에 복제·정리. 사람은 한 번도 `ai-wiki/`를 직접 만지지 않습니다.
 
-셋째, **LLM은 `ai-wiki/`만 읽습니다.** 사람용 `outbox/`에는 직접 접근하지 않습니다. 이게 안전장치 — LLM이 사람 영역을 망가뜨릴 수 없게.
+셋째, **raw는 안 건드리고, wiki는 매일 업데이트.** 안드레 카파시 LLM wiki의 본질입니다. `outbox/`(raw)는 사람만 추가, 사람도 LLM도 *수정하지 않는* append-only 영역. `ai-wiki/`(wiki)는 `/morning`이 매일 새로 정리해 쓰는 영역. 사람은 한 번도 `ai-wiki/`를 직접 만지지 않습니다.
 
 <Callout type="info">
-**`ai-wiki/`는 LLM이 읽기만 하는 영역**입니다. 사람의 `outbox/`와 분리된 게 의도된 거예요. LLM이 만들어준 답을 그대로 `outbox/`에 붙이면 나는 받아 적은 셈이라 학습이 일어나지 않습니다. LLM 응답은 한 줄씩 내가 검토해서 채택할지 정하고, 채택한다면 내 손으로 `outbox/`에 옮겨 적는 자료일 뿐.
+**`ai-wiki/`는 `/morning`이 매일 새로 정리하는 LLM 작업 영역**입니다(카파시 LLM wiki 본질). raw인 `outbox/`는 사람만 추가하고 사람도 LLM도 수정하지 않는 append-only로 남겨두고, `ai-wiki/`는 매일 새로 채워집니다. 그리고 LLM이 만들어준 답을 그대로 `outbox/`에 붙이면 나는 받아 적은 셈이라 학습이 일어나지 않습니다. LLM 응답은 한 줄씩 내가 검토해서 채택할지 정하고, 채택한다면 내 손으로 `outbox/`에 옮겨 적는 자료일 뿐.
 </Callout>
 
 ### outbox 경계 — 단위는 내 손, 다듬기는 AI 손
