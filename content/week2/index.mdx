@@ -1,0 +1,61 @@
+# 2회차 · 5/20 (수) 19:30~21:30
+
+<Callout type="tip">
+🎯 **오늘의 목표**: 매일 아침 나에게 도착하는 **학습 에이전트 v1**.
+저장소 substrate + 메타인지 한 줄 + 다음 한 줄 액션 — 손으로 굴려본다.
+</Callout>
+
+## 흐름 한눈에
+
+7단계로 진행합니다. **메인 액티비티 2개 구조**(메커니즘 다이어그램 · 데이터+커맨드)에 맞추되, 0번 Hook으로 거꾸로 본질을 먼저 깔고 시작합니다.
+
+```mermaid
+flowchart TD
+    Hook["0. Hook · 30초<br/>내일 아침 뉴스레터 데모"]
+    S1["1. 통증 회상 · 7분<br/>내 PKM의 통증 1줄"]
+    S2["2. 외부 모델 · 10분<br/>카파시 · 김창준 · PKM/PIM<br/>(각 1줄 + 내 케이스 매칭)"]
+    S3["3. 메커니즘 1장 · 15분<br/>in → 처리 → outbox"]
+    S4["4. 저장소 클론 · 10분<br/>초안 + 스킬 세트"]
+    S5["5. 데이터 + 커맨드 · 25분<br/>outbox 만들어보기"]
+    S6["6. 스케줄 v1 · 15분<br/>아침 뉴스레터 + 메타인지 1줄 + 액션 1줄"]
+    Park["📌 다음 주 후보<br/>메타인지 지도 · 방향 검토 · 뉴스레터 풀스케일"]
+
+    Hook --> S1 --> S2 --> S3 --> S4 --> S5 --> S6
+    S6 -.->|풀스케일은 빼둠| Park
+
+    classDef anchor fill:#dee9fb,stroke:#3d6ff2,stroke-width:2px,color:#1f47b3
+    classDef park fill:#f7f6f3,stroke:#9b9a97,stroke-dasharray:5,color:#6b6964
+    class S3,S6 anchor
+    class Park park
+```
+
+## 카드
+
+<CardGrid columns={2}>
+  <Card title="라이브 흐름 7단계" icon="🚦" href="/week2/flow" meta="시간순 진행안">
+    Hook부터 스케줄 v1까지 단계별 상세
+  </Card>
+  <Card title="outbox 메커니즘" icon="📤" href="/week2/substrate" meta="3번 보강 자료">
+    in → 처리 → outbox · 매일 도착하는 뉴스레터의 척추
+  </Card>
+  <Card title="미션 · 5/26 마감" icon="🎯" href="/week2/mission" meta="개인 + 팀">
+    내 outbox 7일 굴리고 1줄 메타인지 5개 모으기
+  </Card>
+  <Card title="3개 옵션 표 결과" icon="🗳️" meta="4 · 2 · 4 → 1+3 통합">
+    1번 앵커 + 3번 substrate · 2번은 다음 한 줄로 흘림
+  </Card>
+</CardGrid>
+
+## 본질 한 줄
+
+> **오늘 나는 뭘 모르고 있나?**
+> 이 질문에 매일 아침 1줄로 답을 받는 v1을 만든다.
+
+산출물·환경·일일 사이클·거꾸로 본질 4축:
+
+| 축 | 내용 |
+|---|---|
+| 산출물 | 메타인지 한 줄 + 근거 인용 |
+| 환경 | 본인 데이터 1소스만 (PR 5개 or 노션 3페이지 or 노트 1폴더) |
+| 일일 사이클 | 매일 아침, "오늘 본 데이터 → 1줄 메타인지 → 다음 1줄 행동" |
+| 거꾸로 본질 | 라이브 끝나고 본인이 한 번 "어, 내가 OO를 모르고 있었네" 손에 짚으면 성공 |
