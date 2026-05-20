@@ -28,34 +28,39 @@
 ```mermaid
 flowchart LR
     Me(["👤 나"])
-    Out["📤 outbox/<br/>(사람용 · 자유 분류)<br/>파일명 = 주장"]
-    AI["📚 .ai-wiki/<br/>(AI용 · LLM 친화)<br/>YYYY-MM-DD-주제.md"]
+    Out["📤 outbox/<br/>(사람-소화 글)<br/>파일명 = 주장"]
+    In["📥 .inbox/<br/>(raw 던지기)"]
+    AI["📚 .ai-wiki/<br/>(LLM 친화 미러)<br/>type: raw + reflected"]
     LLM(["🤖 LLM"])
 
     Me -- "쓴다<br/>(학습)" --> Out
-    Out -- "자동 동기화<br/>(/돌아보기)" --> AI
+    Me -- "/수집" --> In
+    Out -- "/돌아보기<br/>(type: reflected)" --> AI
+    In -- "/수집<br/>(type: raw)" --> AI
     AI -- "읽는다<br/>(컨텍스트)" --> LLM
 
     classDef me fill:#fafce0,stroke:#b59f3b,stroke-width:3px,color:#5b4a0e
     classDef out fill:#fafce0,stroke:#b59f3b,stroke-width:3px,color:#5b4a0e
+    classDef in fill:#f7f6f3,stroke:#9b9a97,color:#6b6964
     classDef ai fill:#dee9fb,stroke:#3d6ff2,stroke-width:2px,color:#1f47b3
     classDef llm fill:#dee9fb,stroke:#3d6ff2,stroke-width:2px,color:#1f47b3
     class Me me
     class Out out
+    class In in
     class AI ai
     class LLM llm
 ```
 
 핵심은 세 가지입니다.
 
-첫째, **사람은 `outbox/`만 신경쓰면 됩니다.** 본인에게 맞는 분류와 의미 있는 파일명으로 글을 쓰는 자리. 시간순 prefix 같은 운영 정보는 신경 안 써도 됩니다.
+첫째, **사람은 `outbox/`(소화한 글)와 `.inbox/`(raw 자료) 두 자리만 신경쓰면 됩니다.** 본인에게 맞는 분류와 의미 있는 파일명으로 outbox에 글을 쓰고, raw 자료는 `/수집`으로 .inbox에 던집니다. 시간순 prefix 같은 운영 정보는 신경 안 써도 됩니다.
 
-둘째, **자동 동기화가 `.ai-wiki/`를 채웁니다.** `/돌아보기` 커맨드가 `outbox/`의 글을 읽어 시간 prefix로 `.ai-wiki/`에 복제·정리. 사람은 한 번도 `.ai-wiki/`를 직접 만지지 않습니다.
+둘째, **두 커맨드가 `.ai-wiki/`를 채웁니다.** `/돌아보기`는 `outbox/`의 사람-소화 글을 `type: reflected`로 동기화하고, `/수집`은 `.inbox/`의 raw 자료를 `type: raw`로 미러링합니다. 사람은 한 번도 `.ai-wiki/`를 직접 만지지 않고, `type` 필드 하나로 LLM·사람 모두 raw와 사람-소화를 한눈에 구분합니다.
 
-셋째, **raw는 안 건드리고, wiki는 호출 때마다 새로 쓴다.** 안드레 카파시 LLM wiki의 본질입니다. `outbox/`(raw)는 사람만 추가, 사람도 LLM도 *수정하지 않는* append-only 영역. `.ai-wiki/`(wiki)는 `/돌아보기`가 호출될 때마다 새로 정리해 쓰는 영역. 사람은 한 번도 `.ai-wiki/`를 직접 만지지 않습니다.
+셋째, **사람 영역은 append-only, `.ai-wiki/`는 호출 때마다 새로 쓴다.** 안드레 카파시 LLM wiki의 본질입니다. `outbox/`(사람-소화)와 `.inbox/`(raw)는 사람만 추가하고 *수정하지 않는* append-only 영역. `.ai-wiki/`는 `/돌아보기`·`/수집`이 호출될 때마다 새로 정리해 쓰는 미러. 사람은 한 번도 `.ai-wiki/`를 직접 만지지 않습니다.
 
 <Callout type="info">
-**`.ai-wiki/`는 `/돌아보기`가 호출될 때마다 새로 정리하는 LLM 작업 영역**입니다(카파시 LLM wiki 본질). raw인 `outbox/`는 사람만 추가하고 사람도 LLM도 수정하지 않는 append-only로 남겨두고, `.ai-wiki/`는 호출 때마다 새로 채워집니다. 그리고 LLM이 만들어준 답을 그대로 `outbox/`에 붙이면 나는 받아 적은 셈이라 학습이 일어나지 않습니다. LLM 응답은 한 줄씩 내가 검토해서 채택할지 정하고, 채택한다면 내 손으로 `outbox/`에 옮겨 적는 자료일 뿐.
+**`.ai-wiki/`는 `/돌아보기`·`/수집`이 호출될 때마다 새로 정리하는 LLM 작업 영역**입니다(카파시 LLM wiki 본질). `outbox/`(사람-소화)와 `.inbox/`(raw) 둘 다 사람만 추가하고 사람도 LLM도 수정하지 않는 append-only로 남겨두고, `.ai-wiki/`는 호출 때마다 새로 채워집니다. 그리고 LLM이 `.ai-wiki/`의 raw에서 만들어준 답을 그대로 `outbox/`에 붙이면 나는 받아 적은 셈이라 학습이 일어나지 않습니다. LLM 응답은 한 줄씩 내가 검토해서 채택할지 정하고, 채택한다면 내 손으로 `outbox/`에 옮겨 적는 자료일 뿐. 같은 이유로 `/주간정리`처럼 AI가 만든 분석 자료도 `.inbox/`에 떨어집니다 — outbox의 손맛과 섞이지 않게.
 </Callout>
 
 ### outbox 경계 — 단위는 내 손, 다듬기는 AI 손
