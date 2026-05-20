@@ -320,6 +320,12 @@ nav[class*='nextra'] a {
   font-weight: 500;
 }
 
+.nextra-navbar-blur {
+  background: var(--nextra-bg) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
 /* 사이드바 스타일 */
 aside a {
   font-size: 0.875rem;
