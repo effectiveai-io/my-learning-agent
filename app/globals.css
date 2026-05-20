@@ -344,19 +344,22 @@ article td {
 }
 
 /* Korean+English mixed tables — keep words intact so column 1 doesn't shrink
- * to one-character width when column 3 has a long sentence. */
+ * to one-character width when column 3 has a long sentence.
+ * Nextra's stock styles set `overflow-wrap: anywhere`, which both breaks English
+ * words mid-character AND lets the browser size a column to 1ch min-content.
+ * We override with !important since the upstream rule has equal/higher specificity. */
 article th,
 article td {
-  word-break: keep-all;
-  overflow-wrap: normal;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
 }
 
 /* But inline code (URLs, paths, long tokens) must still be able to break,
  * otherwise it overflows the cell. */
 article th code,
 article td code {
-  word-break: break-all;
-  overflow-wrap: anywhere;
+  word-break: break-all !important;
+  overflow-wrap: anywhere !important;
 }
 
 /* Navbar 스타일 */
