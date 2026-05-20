@@ -7,6 +7,7 @@ const withNextra = nextra({
 
 export default withNextra({
   reactStrictMode: true,
+  devIndicators: false,
   // GitHub Pages 배포 시 아래 두 줄 추가:
   // output: 'export',
   // images: { unoptimized: true },
