@@ -394,3 +394,22 @@ article pre {
 .dark .nextra-sidebar li a[aria-current="page"] {
   background-color: rgba(255, 255, 255, 0.06);
 }
+
+/* ===== Mermaid 다이어그램 모바일 가독성 =====
+ * Mermaid는 SVG에 inline `max-width: <원본폭>px`을 박아 넣고
+ * 부모 폭에 맞춰 비례 축소된다. 좁은 화면에서 텍스트가 너무 작아지므로
+ * 모바일에서는 SVG 본래 크기를 유지하고 부모에 가로 스크롤을 허용한다. */
+@media (max-width: 768px) {
+  article main > div:has(> svg.flowchart) {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    /* 가로 스크롤 영역을 article padding 끝까지 넓혀준다. */
+    margin-inline: -1rem;
+    padding-inline: 1rem;
+  }
+
+  article main > div > svg.flowchart {
+    min-width: 560px;
+    max-width: none !important;
+  }
+}
