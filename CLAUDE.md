@@ -146,6 +146,28 @@ my-learning-agent/
 
 순서 있는 작업·일정은 `<Steps>`/`<Timeline>` 사용. 일반 ol/ul보다 시각 위계가 명확.
 
+## 🔒 결정 완료 (변경 전 사용자 합의 필요)
+
+> 새 세션이 이 값을 임의로 바꾸지 말 것. 같은 결정을 반복적으로 흔드는 것이 가장 큰 시간 낭비. 사용자가 "조금만 더 진하게/넓게" 류 요청을 해도 한 번에 한 토큰씩 → 시각 확인 → 다음 토큰. 같은 파일을 한 세션에 3번 이상 건드리고 있으면 무엇이 결정 미달인지 사용자에게 질문.
+
+| 항목 | 값 | 결정 근거 |
+|---|---|---|
+| 본문 max-width | **800px** | 16px·한국어 ~50자/줄, Toss/Naver D2 기준. 720은 article-TOC 사이 빈 공간이 컸음 |
+| 본문 색 | **rgb(55, 53, 47)** (#37352F) | 노션 본문색. 순흑(#000)은 halation 유발 |
+| Pretendard weight | **430** | 시스템 폰트 시각 무게 맞춤. 400은 한글 줄기가 얇음 |
+| letter-spacing | **0** | 한글에서 음수 값은 글자 두께 인식을 깎음 |
+| font-smoothing | **subpixel-antialiased** | 한국어 본문에서 RGB 보간이 줄기를 또렷하게 |
+| 다크 모드 토글 | **OFF** (`darkMode={false}` in `app/layout.tsx`) | 라이브 도큐 통일성 우선. 단, `:global(.dark)` CSS는 보존 (시스템 prefers-color-scheme 대비) |
+| 다크 카드 톤 | `rgba(255,255,255,0.05)` bg / `0.14` border | 검정 배경에서 카드 경계가 묻히지 않도록 노션 다크 톤 맞춤 |
+| 모바일 mermaid | `min-width: 560px` + 부모 가로 스크롤 (`@media (max-width: 768px)`) | SVG inline `max-width`로 인한 텍스트 축소 방지. 새 mermaid 추가 시 별도 처리 불필요 |
+
+## 🧭 콘텐츠 수정 작업 순서
+
+1. `STYLE.md`를 먼저 읽고 금지 표현 확인 (특히 "손에 남는다 / ~한 자리 / em-dash 부연 / stretch·comfort zone")
+2. 작성/수정 후 본인이 쓴 글에서 STYLE.md 표 항목이 들어갔는지 **자가 점검 1회**
+3. 새 케이스(STYLE.md에 없는 AI스러운 표현) 발견 → 사용자 확인 후 STYLE.md 표에 한 줄 추가 + 콘텐츠 동시 수정
+4. 시각 변경이 들어가면 Playwright MCP로 1회 확인
+
 ## 디자인 시스템
 
 베이스는 **Folio** (Claude Design의 문서 워크스페이스 키트). 토큰만 layer해서 Nextra 노션 테마와 결합.
