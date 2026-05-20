@@ -123,8 +123,17 @@ my-learning-agent/
 ```
 
 - 따뜻한 오프화이트(`#f7f6f3`) 배경 — 흰 페이지에서 분리
-- 호버 시 슬레이트 블루 보더 + 작은 shadow
+- 호버: 배경이 살짝 더 짙어짐 + 1px lift + shadow 깊어짐 + 화살표만 액센트 컬러 (테두리는 같은 hue 안에서 짙어지기만; 강한 색 X)
 - 5개 이상이면 5번째는 단독 finale card로 빼는 게 시각적으로 자연스러움 (참고: `content/index.mdx` 데모데이 섹션)
+
+**🚧 카드 컴포넌트 가드레일 — 손대기 전에 반드시 읽기**
+
+| 함정 | 잘못된 코드 | 올바른 코드 | 이유 |
+|---|---|---|---|
+| 그리드 컬럼 폭 불균등 | `grid-template-columns: repeat(2, 1fr)` | `grid-template-columns: repeat(2, minmax(0, 1fr))` | `1fr`은 실제 `minmax(auto, 1fr)`이라 콘텐츠 min-content가 컬럼을 밀어내면 폭이 깨진다. |
+| 이모지마다 본문 시작점이 다름 | `.icon { /* width 없음 */ }` | `.icon { width: 1.6em; text-align: center; }` | 🚦/📋/🎯/📚는 실제 렌더 폭이 다르므로 폭 고정 필요. |
+| 호버 시 카드가 "사라지는" 느낌 | `background: #fff (밝아짐)` | `background: #f3f1ec (짙어짐)` | 페이지 흰 배경에 녹아들지 않게 — 호버는 항상 "더 짙어지는" 방향. |
+| 액센트 컬러가 테두리에 튐 | 호버 시 `border-color: blue` | 호버 시 화살표만 액센트, 테두리는 회색 짙어짐 | 강한 채도색은 사용자 멘탈모델에서 focus ring/selected로 읽힘. 액센트는 "다음 행동" 한 곳에만. |
 
 ### Steps / Timeline
 

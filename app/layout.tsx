@@ -57,6 +57,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           }
           pageMap={await getPageMap()}
           docsRepositoryBase="https://github.com/imakerjun/my-learning-agent/tree/main"
+          copyPageButton={false}
           sidebar={{
             defaultMenuCollapseLevel: 1,
             toggleButton: true,
