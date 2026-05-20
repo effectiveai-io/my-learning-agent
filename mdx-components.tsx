@@ -9,6 +9,7 @@ import { Placeholder } from './components/Placeholder'
 import { Hero } from './components/Hero'
 import { Steps, Step } from './components/Steps'
 import { Table } from './components/Table'
+import { Reference } from './components/Reference'
 
 const docsComponents = getDocsMDXComponents()
 
@@ -27,6 +28,7 @@ export function useMDXComponents(components?: Record<string, React.FC>) {
     Hero,
     Steps,
     Step,
+    Reference,
     ...components,
   }
 }
