@@ -69,7 +69,7 @@ my-learning-agent/
 │       ├── mechanism.mdx        # 2. 핵심 메커니즘 라이브 구성
 │       ├── setup.mdx            # 3. 저장소 셋팅
 │       ├── outbox.mdx           # 4. outbox 설계 + 데이터 + 커맨드
-│       ├── newsletter.mdx       # 5. 뉴스레터 스케줄 + 메타인지 지도
+│       ├── newsletter.mdx       # 5. 오늘 한 줄 (매일 아침 도착하는 메타인지 메일)
 │       └── mission.mdx
 ├── public/
 │   ├── illustrations/           # japan-images에서 가져온 헤딩 일러스트 4종

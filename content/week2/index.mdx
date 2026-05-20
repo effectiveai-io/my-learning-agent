@@ -11,14 +11,14 @@
 
 ```mermaid
 flowchart TD
-    Hook["0. Hook · 30초<br/>내일 아침 뉴스레터 데모"]
+    Hook["0. Hook · 30초<br/>내일 아침 '오늘 한 줄' 메일 데모"]
     S1["1. 통증 회상 · 7분<br/>내 PKM의 통증 1줄"]
     S2["2. 외부 모델 · 10분<br/>PKM/PIM · 정리=사고 · 카파시<br/>(각 1줄 + 내 케이스 매칭)"]
     S3["3. 메커니즘 1장 · 15분<br/>in → 처리 → outbox"]
     S4["4. 저장소 클론 · 10분<br/>초안 + 스킬 세트"]
     S5["5. 데이터 + 커맨드 · 25분<br/>outbox 만들어보기"]
-    S6["6. 스케줄 v1 · 15분<br/>아침 뉴스레터 + 메타인지 1줄 + 액션 1줄"]
-    Park["📌 다음 주 후보<br/>메타인지 지도 · 방향 검토 · 뉴스레터 풀스케일"]
+    S6["6. 스케줄 v1 · 15분<br/>'오늘 한 줄' 메일 + 메타인지 1줄 + 액션 1줄"]
+    Park["📌 다음 주 후보<br/>메타인지 지도 · 방향 검토 · '오늘 한 줄' 풀스케일"]
 
     Hook --> S1 --> S2 --> S3 --> S4 --> S5 --> S6
     S6 -.->|풀스케일은 빼둠| Park
@@ -46,8 +46,8 @@ flowchart TD
   </Card>
 </CardGrid>
 
-<Card title="5. 뉴스레터 스케줄 + 메타인지 지도" icon="📨" href="/week2/newsletter" meta="15분 · 매일 아침 도착하는 v1">
-GitHub Actions cron으로 outbox/ 자동 생성 + 본인에게 알림. 메타인지 지도는 다음 주 후보로 흘림
+<Card title="5. 오늘 한 줄" icon="📨" href="/week2/newsletter" meta="15분 · 매일 아침 도착하는 v1">
+`/schedule`로 매일 아침 outbox·.ai-wiki를 읽고 숫자 3개 + 오늘 쓸 한 줄을 본인에게 보냄. 안 봐도 그만인 뉴스레터가 아니라 약속.
 </Card>
 
 <CardGrid columns={2}>
