@@ -329,10 +329,20 @@ nav[class*='nextra'] a {
   font-weight: 500;
 }
 
+.nextra-navbar {
+  background: rgb(var(--nextra-bg)) !important;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+  isolation: isolate;
+}
+
 .nextra-navbar-blur {
-  background: var(--nextra-bg) !important;
+  background: rgb(var(--nextra-bg)) !important;
   -webkit-backdrop-filter: none !important;
   backdrop-filter: none !important;
+}
+
+.dark .nextra-navbar {
+  border-bottom-color: rgba(255, 255, 255, 0.09);
 }
 
 /* 사이드바 스타일 */
@@ -361,7 +371,7 @@ aside a {
   border-top: none !important;
   border-bottom: 1px solid rgba(55, 53, 47, 0.09);
   z-index: 1;
-  background: var(--nextra-bg);
+  background: rgb(var(--nextra-bg));
 }
 
 .dark .nextra-sidebar-footer {
