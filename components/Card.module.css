@@ -169,6 +169,12 @@
   height: 96px;
   object-fit: contain;
   user-select: none;
+  /* globals.css의 `article img` 노션 스타일 보더·라운드·마진을 카드 이미지에서는 무력화.
+   * 일러스트 자체가 시각 단위라 외곽 1px 보더가 들어가면 액자처럼 가둬 보임. */
+  border: 0 !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  background: transparent;
 }
 
 .card.vertical .body {
