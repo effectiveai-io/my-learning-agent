@@ -51,12 +51,24 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* 본문 - 노션 실제 행간에 근접 (한국어 가독성 최적화) */
+/* 본문 - 노션 실제 행간에 근접 (한국어 가독성 최적화)
+ * 색은 노션과 동일한 #37352F (순흑은 halation 유발 → 의도적으로 회피).
+ * Pretendard Variable은 weight 400에서 한글 줄기가 가늘게 보이므로
+ * 노션의 시스템 폰트 시각 무게에 맞춰 430으로 올린다.
+ * 한글 본문에서 음수 letter-spacing은 글자 두께 인식을 깎으므로 0. */
 article {
   font-size: 16px;
   line-height: 1.6;
   color: rgb(55, 53, 47);
-  letter-spacing: -0.003em;
+  font-weight: 430;
+  letter-spacing: 0;
+}
+
+/* 한국어 본문은 subpixel-antialiased가 줄기를 살짝 더 굵게 그려준다.
+ * (Mac antialiased = 회색 보간 → 더 얇음. subpixel = RGB 보간 → 또렷함) */
+article {
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto;
 }
 
 /* 본문 흐름 요소는 Notion 본문 너비(720px)로 제한.
