@@ -12,6 +12,7 @@ import { Table } from './components/Table'
 import { Reference } from './components/Reference'
 import { Anchor } from './components/Anchor'
 import { CodeBlock } from './components/CodeBlock'
+import { PageIcon } from './components/PageIcon'
 
 const docsComponents = getDocsMDXComponents()
 
@@ -33,6 +34,7 @@ export function useMDXComponents(components?: Record<string, React.FC>) {
     Steps,
     Step,
     Reference,
+    PageIcon,
     ...components,
   }
 }
