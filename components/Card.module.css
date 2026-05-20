@@ -145,6 +145,57 @@
   transform: translateX(4px);
 }
 
+/* Vertical variant — 일러스트/큰 아이콘이 위, 텍스트가 아래.
+ * Anthropic 커리큘럼 베이스처럼 동급 카드 3개가 나란히 갈 때 시각 균형이 더 좋다.
+ * - 가운데 정렬: 일러스트 자체가 axis가 되므로 텍스트도 center
+ * - 아이콘은 horizontal variant(2em)보다 크게 (3.2em) — "이미지" 역할
+ * - 화살표 X: 카드 전체가 클릭 타깃임을 일러스트 lift로 표현 */
+.card.vertical {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.85rem;
+  padding: 1.75rem 1.25rem 1.5rem;
+}
+
+.card.vertical .icon {
+  font-size: 3.2em;
+  width: auto;
+  line-height: 1;
+}
+
+.card.vertical .image {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  user-select: none;
+}
+
+.card.vertical .body {
+  flex: 0 0 auto;
+}
+
+.card.vertical .title {
+  font-size: 1.125rem;
+  margin-bottom: 0.4em;
+}
+
+.card.vertical .description {
+  font-size: 0.9375rem;
+}
+
+.card.vertical .meta {
+  margin-top: 0.75rem;
+}
+
+/* vertical hover: 화살표 대신 일러스트가 살짝 위로 — "들 수 있다"는 어포던스를
+ * 콘텐츠 자체에서 표현 (액센트 컬러 사용 X, 기존 결정 토큰 유지) */
+.link:hover .card.vertical .icon,
+.link:hover .card.vertical .image {
+  transform: translateY(-2px);
+  transition: transform 0.18s ease-out;
+}
+
 /* Grid - 노션 스타일 갤러리
  *
  * ⚠️ minmax(0, 1fr) — 1fr로 쓰면 안 된다.
