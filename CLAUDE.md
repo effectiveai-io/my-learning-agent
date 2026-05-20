@@ -141,7 +141,7 @@ my-learning-agent/
 |---|---|---|---|
 | 컨텐츠가 좌측으로 쏠려 보임 | `max-width: 720px;` (단독) | `max-width: 720px; margin-inline: auto;` (짝) | `max-width`만 주면 블록이 좁아질 뿐 위치는 안 바뀜 — 부모 왼쪽에 달라붙음. Hero(text-align: center, 풀폭) 아래 컨텐츠가 좌측 쏠리는 시각 비대칭의 원인. |
 | Hero 폭과 본문 폭이 다름 | Hero 풀폭 + 본문 720px **좌측 정렬** | Hero 풀폭(text-align: center) + 본문 720px **+ margin-inline: auto** | 두 요소의 가운데 축이 같아야 페이지가 단단하게 느껴진다. |
-| 인용(blockquote) 안 텍스트가 본문 텍스트보다 안쪽에 시작 | blockquote가 본문과 동일한 max-width | blockquote max-width = 본문 + `2×(border-left + padding-left)` | border + padding이 텍스트를 안쪽으로 미는 만큼 box를 양쪽으로 더 넓혀 가운데 정렬되게 하면, 좌측 bar가 본문 padding 영역으로 "bleed-out"되어 안 텍스트가 본문과 정렬됨 (편집 디자인의 "hanging accent" 패턴). **본문 max-width 변경 시 이 값도 같이 맞춰야 함** — 현재: 본문 800 / 인용 `calc(800px + 2em + 6px)` = 838. |
+| 인용(blockquote) 안 텍스트가 본문 텍스트보다 안쪽에 시작 | blockquote가 본문과 동일한 max-width (또는 단순 wider max-width) | `margin-left: calc(50% - 400px - 1em - 3px) !important` + `max-width: calc(800px + 1em + 3px)` | 단순 wider max-width 방식은 **부모(article main)가 본문 폭과 비슷할 때 bleed 공간이 없어 실패**한다 (docs 페이지가 그런 경우). percentage-based margin-left를 쓰면 부모 폭과 무관하게 항상 본문 좌측보다 정확히 (border+padding-left)만큼 LEFT에 자리잡는다. Nextra Tailwind blockquote 스타일을 이기기 위해 `!important` 필요. **본문 max-width(800) / padding(1em) / border(3px) 중 하나라도 변경 시 calc 인자도 같이 맞춰야 함**. |
 
 ### Steps / Timeline
 
