@@ -24,6 +24,18 @@ export default {
     title: '2회차',
     type: 'page',
   },
+  week3: {
+    title: '3회차',
+    type: 'page',
+  },
+  week4: {
+    title: '4회차',
+    type: 'page',
+  },
+  week5: {
+    title: '5회차',
+    type: 'page',
+  },
   examples: {
     title: '컴포넌트 예제',
     type: 'page',

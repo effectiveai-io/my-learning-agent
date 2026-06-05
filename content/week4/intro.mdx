@@ -1,0 +1,57 @@
+# 1. 헤르메스 에이전트 소개
+
+> 본인이 만든 학습 에이전트를 한 단계 더 끌어올리는 도구. 4회차 라이브의 기반.
+
+## 한 줄 정의
+
+**헤르메스 에이전트(Hermes Agent)** — Nous Research가 공개한 오픈소스 에이전트 프레임워크. 공식 슬로건은 *"The agent that grows with you"*. ([nousresearch/hermes-agent](https://github.com/nousresearch/hermes-agent))
+
+## 핵심 컨셉 — 스킬 한 장이 곧 슬래시 커맨드
+
+공식 퀵스타트 문서가 짚는 핵심 한 줄:
+
+> "Each is a `SKILL.md` file with a name, a description, and a step-by-step procedure."
+> "Every installed skill becomes a slash command automatically: `/k8s deploy`"
+>
+> — [Hermes Agent · Quickstart](https://hermes-agent.nousresearch.com/docs/getting-started/quickstart)
+
+즉 사고 메커니즘 한 개를 markdown 한 장에 적으면, 그게 그대로 `/{커맨드}`로 호출 가능한 형태가 됩니다. 본인이 outbox에 쓰는 한 단락(주장·근거·다음 행동)이 그대로 SKILL.md 한 장으로 변환되는 셈.
+
+## 왜 지금 의미가 있나
+
+- **2025-07-22 공개** ([gh api](https://github.com/nousresearch/hermes-agent)). Claude Code·Codex·OpenCode 같은 closed/주류 도구와 같은 시기에 오픈소스 진영에서 빠르게 자리잡은 에이전트
+- **Python · MIT 라이선스** — 본인 데이터·본인 모델·본인 스킬을 전부 본인 통제 하에 둘 수 있음
+- **모델-중립** — 40+ provider 지원. 로컬 LM Studio·Ollama로도 OK ("Local desktop app exposing an OpenAI-compatible API", quickstart 문서)
+- **컨텍스트 64,000 토큰 이상** 요구 ("Hermes Agent requires a model with at least 64,000 tokens of context.")
+- **Docker · 원격 서버 sandbox** — 에이전트가 실제로 명령을 실행해도 본인 머신이 안전한 격리 옵션
+
+## OpenClaw와 핵심 차이
+
+두 프로젝트 모두 MIT, 로컬-퍼스트, 메시징 플랫폼 통합이라는 큰 그림은 같습니다. 다른 건 **무게 중심**.
+
+| 기준 | 헤르메스 에이전트 | OpenClaw |
+|---|---|---|
+| 메이커 | Nous Research | Peter Steinberger (`steipete`) |
+| 첫 공개 | 2025-07-22 | OpenClaw 이전부터 운영되어 온 프로젝트 |
+| 언어·런타임 | **Python** | **TypeScript / Node.js (v22.19+ 또는 v24)** |
+| 라이선스 | MIT | MIT |
+| 핵심 컨셉 | **스킬 = 사고 메커니즘을 markdown 한 장으로** | **게이트웨이 = 모든 메시지 채널을 한 곳으로** |
+| 자랑 포인트 | `SKILL.md` → 자동 슬래시 커맨드 | "Local-first Gateway — single control plane for sessions, channels, tools, and events" |
+| 모델 | 40+ provider, 로컬 LM Studio·Ollama 지원 | 다양한 LLM provider 지원 |
+| 채널 통합 | Telegram·Discord·Slack·WhatsApp 등 | 20+ 메시징 플랫폼 (WhatsApp·Telegram·Slack·Discord·Signal 등) |
+| 보조 기능 | 음성 모드(faster-whisper), Docker sandbox | Voice Wake + Talk Mode (macOS/iOS/Android), Live Canvas |
+| 무엇에 맞나 | 사고 메커니즘을 코드 외부에 두고 키워가는 사람 | 모든 메시지 채널 통합이 더 급한 사람 |
+
+학습 에이전트 관점에서는 **헤르메스 쪽이 본 챌린지와 맞물립니다.** 2주차 mechanism에서 짚은 *"사람이 다시 읽으려고 쓴 글(outbox)"* 와 *"LLM이 읽기 좋게 정리된 미러(.ai-wiki)"* 의 두 영역 모델에서, **사고 메커니즘을 SKILL.md 한 장으로 외부화**한다는 헤르메스의 컨셉이 정확히 학습 사이클의 다음 자리에 들어옵니다.
+
+<Callout type="info">
+**핵심 한 줄** — *머릿속에 두고 쓰는 메커니즘 한 개를 프롬프트로 옮긴다* = `SKILL.md` 한 장. 라이브에서 본인이 직접 한 개 만들어 봅니다.
+</Callout>
+
+## 출처
+
+- [github.com/nousresearch/hermes-agent](https://github.com/nousresearch/hermes-agent) — 공식 저장소, MIT 라이선스, Python
+- [hermes-agent.nousresearch.com/docs/getting-started/quickstart](https://hermes-agent.nousresearch.com/docs/getting-started/quickstart) — 공식 퀵스타트, 위 인용은 모두 여기서
+- [github.com/openclaw/openclaw](https://github.com/openclaw/openclaw) — OpenClaw 공식 저장소, MIT 라이선스, TypeScript
+
+→ 다음: [2. 로컬 셋팅 한 단계씩](/week4/setup)
