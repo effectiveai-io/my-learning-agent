@@ -181,6 +181,17 @@ article p {
   margin-bottom: 0.85em;
 }
 
+/* 한국어 친화 줄바꿈 — 가운뎃점(`·`)으로 이어진 토큰이나 띄어쓰기 없는
+ * 한국어 어절 중간에서 끊기는 현상 방지. word-break: keep-all이 한국어를
+ * 단어 단위로 끊고, overflow-wrap: break-word는 영문 긴 토큰(URL·경로)의
+ * 오버플로우만 막아준다. */
+article p,
+article li,
+article blockquote {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
 /* 구분선 - 노션 스타일 얇은 선 */
 article hr {
   border: none;
