@@ -12,31 +12,52 @@
 
 ## 1단계 — 사고 메커니즘 → SKILL.md
 
-### 1) 본인 메커니즘 한 개 고르기
+### 1) 본인 메커니즘 고르기
 
-평소에 머릿속에 두고 쓰는 사고 패턴 1개를 떠올린다. 후보 예시:
+라이브 전에 **스프레드시트**에서 각자 다음 3가지를 적어옵니다:
 
-- **회고 한 줄 짚기** — 7일 outbox를 보고 반복된 패턴 1줄
-- **오늘 박을 송곳** — 어제 outbox + `.ai-wiki`에서 오늘의 한 줄 의도
-- **글 시작 첫 줄 만들기** — 빈 페이지 앞에서 본인의 첫 주장 1줄 끌어내기
-- **모른다는 신호 알아채기** — 본인이 자신 있게 쓰는 문장에서 회피한 질문 1줄 짚기
+1. **지금 돌이켜 봤을 때, 나에게 효과적이었던 교육적 경험 3가지**
+2. **지금 돌이켜 봤을 때, 나에게 그다지 효과적이지 않았던 교육적 경험 3가지**
+3. **그 차이를 만든 키워드 3가지**
 
-라이브에서 본인 후보를 같이 짚습니다.
+3번의 **키워드 3가지가 본인 사고 메커니즘의 단서**. 본인이 무언가 배울 때 또는 누군가에게 전할 때 무의식적으로 작동하는 그 패턴입니다. 라이브에서 이 키워드를 **본인 메커니즘 한 줄**로 같이 옮깁니다.
+
+<Callout type="note">
+감이 안 잡힐 때 참고할 후보 — 회고 한 줄 짚기 / 오늘 박을 송곳 / 글 시작 첫 줄 만들기 / 모른다는 신호 알아채기. 단, 본인 키워드 3가지에서 출발한 메커니즘이 우선입니다.
+</Callout>
 
 ### 2) 에이전트와 대화하며 SKILL.md 함께 만들기
 
-디스코드 본인 채널에서 에이전트에게 던집니다:
+본인 키워드 3가지·메커니즘 한 줄을 들고 디스코드 본인 채널에서 에이전트에게 던집니다:
 
-> **"내 사고 메커니즘 한 개를 SKILL.md로 옮기고 싶어. 메커니즘은 `{본인 메커니즘}`이야. 함께 만들어줘."**
+> **"내 사고 메커니즘 한 개를 SKILL.md로 옮기고 싶어. 키워드는 `{키워드 3가지}`이고, 메커니즘은 `{본인 메커니즘 한 줄}`이야. 함께 만들어줘."**
 
 에이전트가 SKILL.md 초안을 돌려주면, 본인이 **한 줄씩** 검토하면서 본인 표현으로 바꿉니다 — 통째로 받지 않습니다. ([2주차 mechanism의 generation effect 원칙](/week2/mechanism))
 
-기본 형식:
+**공식 예시** — 헤르메스가 따르는 [Agent Skills 공식 quickstart](https://agentskills.io/skill-creation/quickstart)의 `roll-dice` 스킬. 한 장 전부:
 
-```text
-# /커맨드명
+````markdown
+---
+name: roll-dice
+description: Roll dice using a random number generator. Use when asked to roll a die (d6, d20, etc.), roll dice, or generate a random dice roll.
+---
 
-(한 줄 설명 — 이 스킬이 무엇을 하는가)
+To roll a die, use the following bash command that generates a random number
+from 1 to the given number of sides: `echo $((RANDOM % <sides> + 1))`
+
+Replace `<sides>` with the number of sides on the die (e.g., 6 for a standard
+die, 20 for a d20).
+````
+
+세 부분이 전부 — **name**(슬래시 커맨드 이름 `/roll-dice`), **description**(에이전트가 이 한 줄을 보고 호출 여부 판단 — 본인 메커니즘이라면 본인이 어떤 상황에서 이걸 호출하는지 한 줄), **본문**(실제 절차).
+
+본인 메커니즘도 같은 한 장:
+
+```markdown
+---
+name: {커맨드명}
+description: 본인이 {어떤 상황}에서 호출. {본인 키워드 핵심}.
+---
 
 ## 절차
 
