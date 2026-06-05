@@ -7,25 +7,26 @@
 **헤르메스 에이전트(Hermes Agent)** — Nous Research가 공개한 오픈소스 에이전트. 공식 슬로건은 다음 한 문장입니다.
 
 > **"The Agent That Grows With You."**
+> **당신과 함께 자라는 에이전트.**
 >
 > — [hermes-agent.nousresearch.com](https://hermes-agent.nousresearch.com/)
 
-자기 정의 한 문단(공식 홈페이지, 직접 인용):
+자기 정의 한 문단(공식 홈페이지, 직접 인용 + 한국어 번역):
 
 > "Not a coding copilot tethered to an IDE or a chatbot wrapper around a single API. An autonomous agent that lives on your server, remembers what it learns, and gets more capable the longer it runs."
-
-번역하면 — IDE에 묶인 코딩 copilot도 아니고, 단일 API를 감싼 챗봇 wrapper도 아니다. 본인 서버에 사는 자율 에이전트로서, 배운 것을 기억하고 오래 돌수록 더 유능해진다.
+>
+> IDE에 묶인 코딩 copilot도 아니고, 단일 API를 감싼 챗봇 wrapper도 아닙니다. 본인 서버에 사는 자율 에이전트로서, 배운 것을 기억하고 오래 돌수록 더 유능해집니다.
 
 ## 공식 6가지 특징 (homepage 그대로)
 
-| 영문 (원문) | 의미 |
+| 영문 (원문) | 한국어 번역 |
 |---|---|
-| **Lives Where You Do** | 본인이 쓰는 채널에 산다 — Telegram · Discord · Slack · WhatsApp · Signal · Email · CLI |
-| **Grows the Longer It Runs** | 오래 돌수록 학습 누적. *"It learns your projects, auto-generates skills, and never forgets how it solved a problem."* |
-| **Scheduled Automations** | *"Natural-language scheduling for reports, backups, and briefings — running unattended through the gateway."* |
-| **Delegates & Parallelizes** | *"Isolated subagents with their own conversations, terminals, and Python RPC scripts."* |
-| **Real Sandboxing** | 5종 백엔드 — *"local, Docker, SSH, Singularity, Modal — with container hardening and namespace isolation."* |
-| **Full Web & Browser Control** | 웹·브라우저 조작 가능 (vision 포함) |
+| **Lives Where You Do** | **본인이 머무는 곳에 산다** — Telegram · Discord · Slack · WhatsApp · Signal · Email · CLI 어디서든 |
+| **Grows the Longer It Runs** | **오래 돌수록 자란다** — *"It learns your projects, auto-generates skills, and never forgets how it solved a problem."* / 본인 프로젝트를 학습하고, 스킬을 자동 생성하며, 한 번 풀어낸 문제는 잊지 않는다 |
+| **Scheduled Automations** | **자연어 스케줄 자동화** — *"Natural-language scheduling for reports, backups, and briefings — running unattended through the gateway."* / 리포트·백업·브리핑을 자연어로 스케줄링하고, 게이트웨이를 통해 사람 손 없이 돌린다 |
+| **Delegates & Parallelizes** | **위임·병렬 실행** — *"Isolated subagents with their own conversations, terminals, and Python RPC scripts."* / 각자 자기 대화·터미널·Python RPC 스크립트를 가진 격리된 서브에이전트 |
+| **Real Sandboxing** | **실 sandbox** — *"local, Docker, SSH, Singularity, Modal — with container hardening and namespace isolation."* / 5종 백엔드(local · Docker · SSH · Singularity · Modal) + 컨테이너 하드닝과 네임스페이스 격리 |
+| **Full Web & Browser Control** | **전체 웹·브라우저 조작** — 브라우저 컨트롤과 vision까지 |
 
 ## 스킬 = 슬래시 커맨드 (핵심 개념)
 
@@ -33,7 +34,11 @@
 
 > "Each is a `SKILL.md` file with a name, a description, and a step-by-step procedure."
 >
+> 각 스킬은 이름·설명·단계별 절차가 적힌 `SKILL.md` 파일 한 장이다.
+
 > "Every installed skill becomes a slash command automatically: `/k8s deploy`"
+>
+> 설치된 모든 스킬은 자동으로 슬래시 커맨드가 된다 — 예: `/k8s deploy`
 
 스킬 한 장(`SKILL.md` markdown)이 곧 슬래시 커맨드로 등록되는 구조. 라이브 본 행사([3. 사고 메커니즘을 스킬로 옮기기](/week4/skill))의 출발점이 바로 이 한 줄.
 
@@ -54,19 +59,19 @@
 
 | 항목 | 헤르메스 에이전트 | OpenClaw |
 |---|---|---|
-| 자기 정의 (공식 원문) | *"An autonomous agent that lives on your server, remembers what it learns, and gets more capable the longer it runs."* | *"A personal AI assistant you run on your own devices. It answers you on the channels you already use."* |
-| 한 줄 슬로건 | *"The Agent That Grows With You."* | *"Your own personal AI assistant. Any OS. Any Platform. The lobster way. 🦞"* |
+| 자기 정의 (공식 원문 + 번역) | *"An autonomous agent that lives on your server, remembers what it learns, and gets more capable the longer it runs."* / **본인 서버에 사는 자율 에이전트로서, 배운 것을 기억하고 오래 돌수록 더 유능해진다.** | *"A personal AI assistant you run on your own devices. It answers you on the channels you already use."* / **본인 디바이스에서 직접 돌리는 개인 AI 어시스턴트. 본인이 평소 쓰는 채널에서 응답한다.** |
+| 한 줄 슬로건 | *"The Agent That Grows With You."* / **당신과 함께 자라는 에이전트.** | *"Your own personal AI assistant. Any OS. Any Platform. The lobster way. 🦞"* / **본인만의 개인 AI 어시스턴트. 어떤 OS·어떤 플랫폼이든. 랍스터 방식으로. 🦞** |
 | 메이커 | Nous Research | Peter Steinberger (`steipete`) |
 | 라이선스 | MIT | MIT |
 | 주 언어 | Python | TypeScript / Node.js (22.19+ 또는 24) |
 | 첫 공개 | 2025-07-22 | OpenClaw 이전부터 운영 |
 | 채널 통합 | Telegram · Discord · Slack · WhatsApp · Signal · Email · CLI | 20+ 채널 (WhatsApp · Telegram · Slack · Discord · Google Chat · Signal · iMessage · IRC · Microsoft Teams · Matrix · Feishu · LINE · Mattermost · Nextcloud Talk · Nostr · Synology Chat · Tlon · Twitch · Zalo · WeChat · QQ · WebChat 등) |
-| 핵심 구조 강조 | *스킬* — `SKILL.md` 한 장이 곧 슬래시 커맨드 | *게이트웨이* — *"The Gateway is just the control plane — the product is the assistant."* |
+| 핵심 구조 강조 | *스킬* — `SKILL.md` 한 장이 곧 슬래시 커맨드 | *게이트웨이* — *"The Gateway is just the control plane — the product is the assistant."* / **게이트웨이는 컨트롤 플레인일 뿐, 제품은 어시스턴트 그 자체다.** |
 | 데스크탑/모바일 부가 기능 | 5 백엔드 sandbox · Python RPC subagent | live Canvas · macOS/iOS/Android 음성 입출력 |
 
-**두 자기 정의를 그대로 읽어보면** —
-- 헤르메스: *server에 사는 자율 에이전트, 기억하고 자라남*
-- OpenClaw: *본인 디바이스에서 도는 개인 어시스턴트, 본인이 쓰는 채널에서 응답*
+**두 자기 정의를 한국어로 나란히 읽어보면** —
+- 헤르메스: *본인 서버에 사는 자율 에이전트로서, 배운 것을 기억하고 오래 돌수록 더 유능해진다.*
+- OpenClaw: *본인 디바이스에서 도는 개인 어시스턴트로서, 본인이 평소 쓰는 채널에서 응답한다.*
 
 **4회차에서는 헤르메스를 다루지만** OpenClaw도 같은 자리(로컬-퍼스트 · MIT · 다채널 통합)에 있는 선택지라는 점만 짚어둡니다. *어느 쪽이 본인에게 맞는지*는 라이브에서 본인이 직접 한 번 셋팅해보고 판단해보는 자리.
 
