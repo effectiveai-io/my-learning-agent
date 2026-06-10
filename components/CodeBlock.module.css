@@ -81,6 +81,14 @@
   word-break: break-word !important;
 }
 
+/* Shiki가 code를 display:grid로 깔아 각 줄 span이 grid row가 된다.
+ * 줄 사이 \n 텍스트 노드는 grid에서 렌더되지 않으므로,
+ * 빈 줄(<span><span></span></span>)은 row 높이가 0으로 접힌다.
+ * zero-width space를 채워 빈 줄도 한 줄 높이를 갖게 한다 (Shiki 공식 해법). */
+.wrapper :where(pre) :where(code) > span > span:empty:only-child::before {
+  content: '\200b';
+}
+
 /* ===== Copy 버튼: Nextra 기본은 group-hover로만 보이고 흰 배경.
  * 노션처럼 호버 시에만 부드럽게 등장하지만, 본 라이브 도큐는
  * "복사해서 실행" 케이스가 많으니 항상 살짝 보이게(0.4) 두고,
