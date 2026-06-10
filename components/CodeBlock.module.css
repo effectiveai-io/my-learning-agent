@@ -72,6 +72,15 @@
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08) !important;
 }
 
+/* 긴 한 줄 프롬프트가 가로로 흘러넘치지 않고 자연스럽게 줄바꿈되도록.
+ * 기본 <pre>는 white-space: pre라 wrap이 안 일어남.
+ * pre-wrap으로 띄어쓰기 지점에서 wrap + overflow-wrap으로 URL 같은 긴 토큰도 안전하게 분할. */
+.wrapper :where(pre) :where(code) {
+  white-space: pre-wrap !important;
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
+}
+
 /* ===== Copy 버튼: Nextra 기본은 group-hover로만 보이고 흰 배경.
  * 노션처럼 호버 시에만 부드럽게 등장하지만, 본 라이브 도큐는
  * "복사해서 실행" 케이스가 많으니 항상 살짝 보이게(0.4) 두고,
