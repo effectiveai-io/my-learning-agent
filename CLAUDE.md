@@ -281,6 +281,14 @@ npm run build      # Vercel 빌드와 동일 검증
 
 `my-learning-agent-*.png`, `.playwright-mcp/`도 로컬 시각 검증용이라 무시.
 
+## 최근 작업 (2026-06-10)
+
+- **5회차를 學/習 이중 사이클로 전체 재구조** (Approach A — 두 기둥, 한 토대). 학습(學習)을 둘로 분할: **學 = 변형**(지식을 내 형태로, 입력단) · **習 = 피드백**(내가 꺼낸 걸 되짚어 고침, 출력단). 분할 축은 "자료 종류"가 아니라 **변형 vs 피드백**. 퀴즈가 두 사이클을 잇는 경첩(學에서 만들고 習에서 인출)
+- 사이드바 구조: `토대(deliberate) → 學(lens) → 習(why·v1·v2) → 둘 다(v3) → 이후(after)`. 메인 액티비티 2개 = 學 변형 + 習 리포트
+- 신규 `content/week5/lens.mdx` (學 트랙). [`imakerjun/learning-templates`](https://github.com/imakerjun/learning-templates)의 `doc-lenses` 템플릿 — 공식문서 한 페이지를 7개 렌즈(어원·한 줄 요약·소설·게임·FAQ·셀프 퀴즈·원문)로 변형해 배포. 習의 `learning-report`와 같은 저장소·같은 흐름(clone → 배포 → 스크린샷)
+- `v3` = "둘 다 · 내 PKM으로 이식": `/리포트`(習) + `/렌즈`(學) 두 커맨드를 본인 PKM 저장소로
+- index를 學習 이중 사이클 한 장 + 메인 카드 2장으로 재구성. `_meta.ts`를 번호 → 트랙 prefix로 (위 _meta 컨벤션 week5 예외 참조)
+
 ## 최근 작업 (2026-05-20)
 
 - 초기 스캐폴딩 + Folio 디자인 layer + 1·2회차 콘텐츠 작성
